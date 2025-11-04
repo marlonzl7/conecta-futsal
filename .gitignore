@@ -1,3 +1,5 @@
 DOCUMENTOS_DE_APOIO
 readme-web-data-viz.md
-
+.env
+.env.dev
+node_modules
