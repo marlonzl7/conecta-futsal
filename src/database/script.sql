@@ -2,6 +2,8 @@ DROP DATABASE conecta_futsal;
 
 CREATE DATABASE conecta_futsal;
 
+USE conecta_futsal;
+
 CREATE TABLE endereco (
 	id_endereco INT PRIMARY KEY AUTO_INCREMENT,
 	cep CHAR(8) NOT NULL,
@@ -32,7 +34,7 @@ CREATE TABLE jogador (
 	descricao VARCHAR(255),
 	id_usuario INT NOT NULL UNIQUE,
 
-	CONSTRAINT fk_jogador_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario);
+	CONSTRAINT fk_jogador_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
 );
 
 CREATE TABLE tecnico (
@@ -85,5 +87,5 @@ CREATE TABLE inscricao (
 	CONSTRAINT pk_inscricao PRIMARY KEY (id_peneira_inscricao, id_jogador, id_peneira),
 
 	CONSTRAINT fk_inscricao_jogador FOREIGN KEY (id_jogador) REFERENCES jogador (id_jogador),
-	CONSTRAINT fk_inscricao_peneira FOREIGN KEY (id_peneira) REFERENCES peneira (id_jogador)
+	CONSTRAINT fk_inscricao_peneira FOREIGN KEY (id_peneira) REFERENCES peneira (id_peneira)
 );
