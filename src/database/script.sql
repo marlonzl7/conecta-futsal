@@ -79,12 +79,11 @@ CREATE TABLE peneira (
 );
 
 CREATE TABLE inscricao (
-	id_peneira_inscricao INT,
-	data_hora_inscricao DATETIME,
-	id_jogador INT UNIQUE,
-	id_peneira INT UNIQUE,
+	id_peneira INT,
+	id_jogador INT,
+	data_hora_inscricao DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-	CONSTRAINT pk_inscricao PRIMARY KEY (id_peneira_inscricao, id_jogador, id_peneira),
+	CONSTRAINT pk_inscricao_peneira_jogador (id_peneira, id_jogador),
 
 	CONSTRAINT fk_inscricao_jogador FOREIGN KEY (id_jogador) REFERENCES jogador (id_jogador),
 	CONSTRAINT fk_inscricao_peneira FOREIGN KEY (id_peneira) REFERENCES peneira (id_peneira)
