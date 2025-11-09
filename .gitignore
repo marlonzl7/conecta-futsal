@@ -3,3 +3,5 @@ readme-web-data-viz.md
 .env
 .env.dev
 node_modules
+create-db-user.sql
+reset-db.sh
