@@ -1,4 +1,4 @@
-DROP DATABASE conecta_futsal;
+-- DROP DATABASE conecta_futsal;
 
 CREATE DATABASE conecta_futsal;
 
@@ -30,7 +30,7 @@ CREATE TABLE usuario (
 
 CREATE TABLE jogador (
 	id_jogador INT PRIMARY KEY AUTO_INCREMENT,
-	posicao VARCHAR(45) NOT NULL,
+	posicao VARCHAR(45),
 	descricao VARCHAR(255),
 	id_usuario INT NOT NULL UNIQUE,
 
