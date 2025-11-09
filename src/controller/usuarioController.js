@@ -1,4 +1,5 @@
 var usuarioModel = require("../model/usuarioModel");
+const { compararSenhas } = require("../utils/senhaUtils");
 
 async function cadastrar(req, res) {
     try {
@@ -28,6 +29,26 @@ async function cadastrar(req, res) {
     }
 }
 
+async function autenticar(req, res) {
+    try {
+        const { email, senha } = req.body;
+        const usuario = await usuarioModel.autenticar(email, senha);
+
+        if (!usuario || !compararSenhas(senha, usuario.senha)) {
+            return res.status(403).json({ error: "Email ou senha inválidos" });
+        }
+
+        res.status(200).json({
+            idUsuario: usuario.id_usuario,
+            nome: usuario.nome
+        });
+    } catch (erro) {
+        console.error("Erro ao autenticar: ", erro);
+        res.status(500).json({ error: "Erro interno no servidor. "});
+    }
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    autenticar
 }

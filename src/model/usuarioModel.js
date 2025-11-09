@@ -1,5 +1,5 @@
 var database = require("../database/config");
-var { gerarHash } = require("./../utils/senhaUtils");
+var { gerarHash, compararSenhas } = require("./../utils/senhaUtils");
 
 async function verificarExistencia(email) {
     const instrucao = `SELECT id_usuario FROM usuario WHERE email = ?`;
@@ -31,6 +31,15 @@ async function cadastrar(nome, sobrenome, dataNascimento, telefone, email, senha
     return resultado.insertId;
 }
 
+async function autenticar(email, senha) {
+    const instrucao = `SELECT id_usuario, nome, email, senha FROM usuario WHERE email = ?`;
+    const parametro = [email];
+    const resultado = await database.execute(instrucao, parametro);
+
+    return resultado.length ? resultado[0] : null;
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    autenticar
 };

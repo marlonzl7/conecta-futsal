@@ -9,7 +9,7 @@ function gerarHash(senha) {
 
 function compararSenhas(senhaDigitada, hashArmazenado) {
     const [salt, hashOriginal] = hashArmazenado.split(":");
-    const hashDigitada = crypto.scrypt(senhaDigitada, salt, 64).toString("hex");
+    const hashDigitada = crypto.scryptSync(senhaDigitada, salt, 64).toString("hex");
     return hashDigitada === hashOriginal;
 }
 
