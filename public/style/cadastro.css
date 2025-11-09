@@ -1,0 +1,29 @@
+@media (max-width: 850px) {
+    .main {
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-height: 850px) {
+    .body {
+        padding: 0;
+    }
+
+    .main {
+        height: 100%;
+    }
+}
+
+@media (max-height: 750px) {
+    .main {
+        gap: 0.75rem;
+    }
+
+    .header {
+        margin-bottom: 0.5rem;
+    }   
+
+    .header h2 {
+        margin-bottom: 0.25rem;
+    }
+}

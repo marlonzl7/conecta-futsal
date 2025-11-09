@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/forms.css">
+    <link rel="stylesheet" href="./style/buttons.css">
+    <title>Conecta Futsal - Cadastro</title>
+</head>
+<body>
+    <main class="main">
+        <header class="header">
+            <h2>Cadastro</h2>
+            <p>Insira suas informações para cadastrar sua conta</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" name="nome" id="nome" placeholder="Nome" oninput="validarNome()">
+                    <div class="error"><span id="emailInvalido"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" oninput="validarSobrenome()">
+                    <div class="error"><span></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="date" name="dataNascimento" id="dataNascimento">
+                    <div class="error"><span></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="telefone" id="telefone" placeholder="Telefone (opcional)" oninput="validarTelefone()" maxlength="" pattern="">
+                    <div class="error"><span></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="email" name="email" id="email" placeholder="Email" oninput="validarEmail()">
+                    <div class="error"><span></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" name="senha" id="senha" placeholder="Senha" oninput="validarSenha()">
+                    <div class="error"><span></span></div>
+                </div>
+
+                <div class="input-box">
+                    <select name="tipoUsuario" id="tipoUsuario" placeholder="Quem é você?">
+                        <option value="#">Selecione...</option>
+                        <option value="jogador">Jogador</option>
+                        <option value="tecnico">Técnico</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="actions">
+                <div class="cadastrar">
+                    <button onclick="cadastrar()" class="btn btn-principal" id="btn-cadastrar">Cadastrar</button>
+                </div>
+
+                <div class="login">
+                    <p id="possui-conta">Já possuí uma conta?</p>
+                    <button onclick="redirecionarParaLogin()" class="btn btn-secundario">Fazer login</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script src="/public/js/redirecionar.js"></script>
+
+</html>

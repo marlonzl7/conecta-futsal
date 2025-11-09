@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/forms.css">
+    <link rel="stylesheet" href="./style/buttons.css">
+    <title>Conecta Futsal - Login</title>
+</head>
+<body>
+    <main class="main">
+        <header class="header">
+            <h2>Login</h2>
+            <p>Insira seu email e senha para entrar na sua conta</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                </div>
+                
+                <div class="input-box">
+                    <input type="password" name="senha" id="senha" placeholder="Senha">
+                </div>
+            </div>
+
+            <div class="actions">
+                <div class="login">
+                    <button class="btn btn-principal">Logar</button>
+                </div>
+
+                <div class="cadastrar">
+                    <p id="nao-possui-conta">Ainda não tem uma conta?</p>
+                    <button onclick="redirecionarParaCadastro()" class="btn btn-secundario" id="criar-conta">Criar uma conta</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script src="/public/js/redirecionar.js"></script>
+
+</html>

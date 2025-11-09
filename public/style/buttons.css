@@ -1,0 +1,21 @@
+.btn {
+    font-size: 0.95rem;
+    border-radius: 6px;
+    padding: 0.875rem 0rem;
+    font-weight: bold;
+    width: 70vw;
+    max-width: 360px;
+    cursor: pointer;
+}
+
+.btn-principal {
+    background-color: #0460D9;
+    border: 1px solid transparent;
+    color: #FFFFFF;
+}
+
+.btn-secundario {
+    background-color: #FFFFFF;
+    border: 1px solid #0460D9;
+    color: #0460D9;
+}

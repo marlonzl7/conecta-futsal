@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2F2F2;
+    padding: 1rem;
+}
+
+.main {
+    width: 100vw;
+    max-width: 600px;
+    padding: 4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.header h2 {
+    font-size: 1.875rem;
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+.header p {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-box input, 
+.input-box select {
+    width: 70vw;
+    max-width: 360px;
+    padding: 0.8rem 1.2rem;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    /* font-size: 0.875rem; */
+}
+
+.input-box input:focus-visible, 
+.input-box select:focus-visible {
+    outline: none;
+    border: 1px solid #65A1F0;
+    box-shadow: 0 0 0 2px rgba(8, 86, 190, 0.15);
+}
+
+.input-box select {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image: url(./../assets/icons/arrow-down-icon.svg);
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5rem auto;
+    border: 1px solid #CCCACA;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.cadastrar,
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#nao-possui-conta,
+#possui-conta {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+#nao-possui-conta {
+    margin-top: 1rem;
+}
+
+.error {
+    display: none;
+}
+
+.error.active {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.error.active span {
+    font-size: 0.75rem;
+    padding: 5px 0 0 10px;
+    text-align: start;
+    color: #B82626;
+}
