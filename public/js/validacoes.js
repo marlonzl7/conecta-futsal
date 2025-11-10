@@ -127,10 +127,10 @@ function validarSenha() {
         } else if (codigo_ascii >= 48 && codigo_ascii <= 57) {
             contemNumero = true;
         } else if (
-            (code >= 32 && code <= 47) || 
-            (code >= 58 && code <= 64) || 
-            (code >= 91 && code <= 96) || 
-            (code >= 123 && code <= 126)) 
+            (codigo_ascii >= 32 && codigo_ascii <= 47) || 
+            (codigo_ascii >= 58 && codigo_ascii <= 64) || 
+            (codigo_ascii >= 91 && codigo_ascii <= 96) || 
+            (codigo_ascii >= 123 && codigo_ascii <= 126)) 
         {
             contemEspecial = true;
         }
