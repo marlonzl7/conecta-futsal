@@ -18,32 +18,32 @@
             <div class="input-group">
                 <div class="input-box">
                     <input type="text" name="nome" id="nome" placeholder="Nome" oninput="validarNome()">
-                    <div class="error"><span id="emailInvalido"></span></div>
+                    <div class="error"><span id="nomeInvalido"></span></div>
                 </div>
 
                 <div class="input-box">
                     <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" oninput="validarSobrenome()">
-                    <div class="error"><span></span></div>
+                    <div class="error"><span id="sobrenomeInvalido"></span></div>
                 </div>
 
                 <div class="input-box">
                     <input type="date" name="dataNascimento" id="dataNascimento">
-                    <div class="error"><span></span></div>
+                    <div class="error"><span id="dataNascimentoInvalida"></span></div>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" name="telefone" id="telefone" placeholder="Telefone (opcional)" oninput="validarTelefone()" maxlength="" pattern="">
-                    <div class="error"><span></span></div>
+                    <input type="text" name="telefone" id="telefone" placeholder="Telefone (opcional)" oninput="validarTelefone()" maxlength="11">
+                    <div class="error"><span id="telefoneInvalido"></span></div>
                 </div>
 
                 <div class="input-box">
                     <input type="email" name="email" id="email" placeholder="Email" oninput="validarEmail()">
-                    <div class="error"><span></span></div>
+                    <div class="error"><span id="emailInvalido"></span></div>
                 </div>
 
                 <div class="input-box">
                     <input type="password" name="senha" id="senha" placeholder="Senha" oninput="validarSenha()">
-                    <div class="error"><span></span></div>
+                    <div class="error"><span id="senhaInvalida"></span></div>
                 </div>
 
                 <div class="input-box">
@@ -52,6 +52,7 @@
                         <option value="jogador">Jogador</option>
                         <option value="tecnico">Técnico</option>
                     </select>
+                    <div class="error"><span id="tipoUsuarioInvalido"></span></div>
                 </div>
             </div>
 
@@ -70,5 +71,6 @@
 </body>
 
 <script src="/public/js/redirecionar.js"></script>
+<script src="/public/js/validacoes.js"></script>
 
 </html>
