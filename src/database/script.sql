@@ -1,5 +1,3 @@
--- DROP DATABASE conecta_futsal;
-
 CREATE DATABASE conecta_futsal;
 
 USE conecta_futsal;

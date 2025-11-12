@@ -3,16 +3,16 @@ const { compararSenhas } = require("../utils/senhaUtils");
 
 async function cadastrar(req, res) {
     try {
-        const { nome, sobrenome, dataNascimento, telefone, email, senha, tipo } = req.body;
+        const { nome, sobrenome, dataNascimento, telefone, email, senha, tipoUsuario } = req.body;
 
         const idUsuario = await usuarioModel.cadastrar(
             nome, sobrenome, dataNascimento, telefone, email, senha
         );
 
-        if (tipo.toLowerCase() === "jogador") {
+        if (tipoUsuario.toLowerCase() === "jogador") {
             const jogadorModel = require("./../model/jogadorModel");
             await jogadorModel.cadastrar(idUsuario)
-        } else if (tipo.toLowerCase() === "tecnico") {
+        } else if (tipoUsuario.toLowerCase() === "tecnico") {
             const tecnicoModel = require("./../model/tecnicoModel");
             await tecnicoModel.cadastrar(idUsuario);
         }
@@ -21,7 +21,7 @@ async function cadastrar(req, res) {
     } catch (erro) {
         console.error("Erro ao cadastrar usuário: ", erro);
         
-        if (typeof erro === "string" && erro.includes("EMAIL_DUPLICADO")) {
+        if (erro == "EMAIL_DUPLICADO") {
             res.status(409).json({ error: "Este email já está em uso. "});
         } else {
             res.status(500).json({ error: "Erro interno no servidor. "});

@@ -4,4 +4,4 @@ readme-web-data-viz.md
 .env.dev
 node_modules
 create-db-user.sql
-reset-db.sh
+reset-db.sql
