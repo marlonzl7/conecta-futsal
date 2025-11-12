@@ -27,7 +27,7 @@
 
             <div class="actions">
                 <div class="login">
-                    <button class="btn btn-principal">Logar</button>
+                    <button onclick="autenticar()" class="btn btn-principal">Logar</button>
                 </div>
 
                 <div class="cadastrar">
@@ -40,6 +40,41 @@
 </body>
 
 <script>
+    function autenticar() {
+        const dados = {
+            email: document.getElementById("email").value,
+            senha: document.getElementById("senha").value,
+        };
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dados)
+        }) 
+        .then (function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+
+                    console.log(JSON.stringify(json));
+                    console.log(sessionStorage.ID_USUARIO);
+                });
+            }
+        })
+        .then (function (dados) {
+            console.log("Autenticação realizada com sucesso: ", dados);
+            alert("Autenticação realizada com sucesso!");
+            window.location.href="./index.html"
+        })
+        .catch (function (erro) {
+            console.error("Erro: ", erro);
+            alert("Ocorreu um erro ao autenticar. Tente novamente.");
+        });
+    }
+
     function redirecionarParaCadastro() {
         location.href="/cadastro.html";
     }
