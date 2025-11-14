@@ -104,13 +104,12 @@
         .then (function (resposta) {
             if (!resposta.ok) {
                 throw "Erro ao cadastrar usuário.";
-                return response.json();
             }
-        })
-        .then (function (dados) {
-            console.log("Cadastro realizado com sucesso: ", dados);
-            alert("Cadastro realizado com sucesso!");
-            window.location.href="./login.html"
+
+            resposta.json().then(json => {
+                alert("Cadastro realizad com sucesso!");
+                location.href="login.html";
+            })
         })
         .catch (function (erro) {
             console.error("Erro: ", erro);

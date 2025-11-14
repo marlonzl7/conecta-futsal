@@ -28,7 +28,9 @@ async function cadastrar(nome, sobrenome, dataNascimento, telefone, email, senha
 
     const resultado = await database.execute(instrucao, parametros);
 
-    return resultado.insertId;
+    console.log(resultado);
+
+    return resultado;
 }
 
 async function autenticar(email, senha) {

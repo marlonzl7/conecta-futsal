@@ -5,12 +5,9 @@
 }
 
 @media (max-height: 850px) {
-    .body {
-        padding: 0;
-    }
-
     .main {
         height: 100%;
+        padding: 1.5rem 1rem;
     }
 }
 

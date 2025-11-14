@@ -54,20 +54,16 @@
             body: JSON.stringify(dados)
         }) 
         .then (function (resposta) {
-            if (resposta.ok) {
-                resposta.json().then(json => {
-                    console.log(json);
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-
-                    console.log(JSON.stringify(json));
-                    console.log(sessionStorage.ID_USUARIO);
-                });
+            if (!resposta.ok) {
+                throw "Erro ao autenticar";
             }
-        })
-        .then (function (dados) {
-            console.log("Autenticação realizada com sucesso: ", dados);
-            alert("Autenticação realizada com sucesso!");
-            window.location.href="./index.html"
+
+            resposta.json().then(json => {                
+                sessionStorage.ID_USUARIO = json.idUsuario;
+                sessionStorage.NOME = json.nome;
+
+                location.href="index.html";
+            })
         })
         .catch (function (erro) {
             console.error("Erro: ", erro);

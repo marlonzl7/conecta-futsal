@@ -5,19 +5,19 @@ async function cadastrar(req, res) {
     try {
         const { nome, sobrenome, dataNascimento, telefone, email, senha, tipoUsuario } = req.body;
 
-        const idUsuario = await usuarioModel.cadastrar(
+        const resultado = await usuarioModel.cadastrar(
             nome, sobrenome, dataNascimento, telefone, email, senha
         );
 
         if (tipoUsuario.toLowerCase() === "jogador") {
             const jogadorModel = require("./../model/jogadorModel");
-            await jogadorModel.cadastrar(idUsuario)
+            await jogadorModel.cadastrar(resultado.idUsuario)
         } else if (tipoUsuario.toLowerCase() === "tecnico") {
             const tecnicoModel = require("./../model/tecnicoModel");
-            await tecnicoModel.cadastrar(idUsuario);
+            await tecnicoModel.cadastrar(resultado.idUsuario);
         }
 
-        res.status(201).json({ message: "Usuário cadastrado com sucesso!", idUsuario });
+        res.status(201).json({ message: "Usuário cadastrado com sucesso!", resultado });
     } catch (erro) {
         console.error("Erro ao cadastrar usuário: ", erro);
         
