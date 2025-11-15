@@ -56,7 +56,7 @@ CREATE TABLE time (
 
 CREATE TABLE categoria_base (
 	id_categoria_base INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(10) NOT NULL UNIQUE
+	nome VARCHAR(12) NOT NULL UNIQUE
 );
 
 CREATE TABLE peneira (
