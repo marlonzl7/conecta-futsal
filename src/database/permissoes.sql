@@ -1,0 +1,3 @@
+GRANT SELECT, INSERT, UPDATE, DELETE ON conecta_futsal.* TO 'aluno'@'%';
+
+FLUSH PRIVILEGES;
