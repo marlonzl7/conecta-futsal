@@ -5,7 +5,7 @@ CREATE VIEW vw_listar_peneiras AS
             t.nome as Time,
             c.nome as 'Categoria de Base',
             CONCAT(e.logradouro, ' ', e.numero, ' ', e.cidade) AS Local,
-            p.data_realizacao AS Data
+            p.data_hora_realizacao AS Data
         FROM 
             peneira p 
                 JOIN endereco e 
