@@ -51,7 +51,7 @@ INSERT INTO categoria_base (nome) VALUES
     ('Profissional'),
     ('Master');
 
-INSERT INTO peneira (titulo, descricao, data_inicio_inscricao, data_final_inscricao, data_hora_inscricao, id_time, id_endereco, id_categoria_base) VALUES
+INSERT INTO peneira (titulo, descricao, data_inicio_inscricao, data_final_inscricao, data_hora_realizacao, id_time, id_endereco, id_categoria_base) VALUES
     ('Peneira: Travessa Futsal - SUB-20', 'Peneira para o Travessa e disputar o campeonato paulista Série Prata', '2025-11-16', '2025-11-30', '2025-12-04', 2, 6, 16),
     ('Peneira: Vila Nova Futsal - SUB-20', 'Peneira para o Vila Nova e disputar campeonatos da Várzea', '2025-11-01', '2025-11-30', '2025-12-08', 7, 18);
 
