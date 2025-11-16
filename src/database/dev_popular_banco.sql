@@ -17,7 +17,7 @@ INSERT INTO usuario (nome, sobrenome, data_nascimento, telefone, email, senha, i
     ('José', 'Silva', '1976-01-20', '11972044761', 'jose@email.com', 'Senha123_', null),
     ('Maria', 'Santos', '1982-07-22', '1199814761', 'maria@email.com', 'Senha123_', null);
 
-INSERT INTO jogador (posicao, descricao, id_usuario) VALUES
+INSERT INTO jogador (posicao, id_usuario) VALUES
     ('ALA', 1),
     ('FIXO', 2),
     ('PIVO', 3),
@@ -53,7 +53,7 @@ INSERT INTO categoria_base (nome) VALUES
 
 INSERT INTO peneira (titulo, descricao, data_inicio_inscricao, data_final_inscricao, data_hora_realizacao, id_time, id_endereco, id_categoria_base) VALUES
     ('Peneira: Travessa Futsal - SUB-20', 'Peneira para o Travessa e disputar o campeonato paulista Série Prata', '2025-11-16', '2025-11-30', '2025-12-04', 2, 6, 16),
-    ('Peneira: Vila Nova Futsal - SUB-20', 'Peneira para o Vila Nova e disputar campeonatos da Várzea', '2025-11-01', '2025-11-30', '2025-12-08', 7, 18);
+    ('Peneira: Vila Nova Futsal - SUB-20', 'Peneira para o Vila Nova e disputar campeonatos da Várzea', '2025-11-01', '2025-11-30', '2025-12-08', 1, 7, 18);
 
 INSERT INTO inscricao (id_peneira, id_jogador) VALUES
     (2, 1),
