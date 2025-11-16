@@ -13,4 +13,4 @@ CREATE VIEW vw_listar_peneiras AS
                 JOIN time t 
                     ON p.id_time = t.id_time
                 JOIN categoria_base c
-                    ON p.id_categoria = c.id_categoria;
+                    ON p.id_categoria_base = c.id_categoria_base;
