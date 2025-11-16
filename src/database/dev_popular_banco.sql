@@ -5,8 +5,8 @@ INSERT INTO endereco (cep, logradouro, numero, complemento, bairro, cidade, uf) 
     ('14870640', 'Praça Doutor Joaquim Nabuco', '1000', null, 'X', 'Jaboticabal', 'SP'),
     ('13323665', 'Rua Serra da Boa Esperança', '200', 'Bloco B', 'Condomínio Monte Belo', 'Salto', 'SP'),
     ('19802130', 'Rua Senhor do Bonfim', '1402', null, 'Vila Xavier', 'Assis', 'SP'),
-    ('13180160', 'Rua Santo Hilário', '1402', null, 'Vila San Martin (Nova Veneza)', 'Sumaré', 'SP');
-    ('14065550', 'Rua Luiz Fernandes Netto', '120', null, 'Jardim Joaquim Procópio de Araújo Ferraz', 'Ribeirão Preto', 'SP');
+    ('13180160', 'Rua Santo Hilário', '1402', null, 'Vila San Martin (Nova Veneza)', 'Sumaré', 'SP'),
+    ('14065550', 'Rua Luiz Fernandes Netto', '120', null, 'Jardim Joaquim Procópio de Araújo Ferraz', 'Ribeirão Preto', 'SP'),
     ('04139090', 'Rua Acarapé', '1021', null, 'Chácara Inglesa', 'São Paulo', 'SP');
 
 INSERT INTO usuario (nome, sobrenome, data_nascimento, telefone, email, senha, id_endereco) VALUES
@@ -15,7 +15,7 @@ INSERT INTO usuario (nome, sobrenome, data_nascimento, telefone, email, senha, i
     ('Otavio', 'Rodrigues', '2000-04-19', '11978012301', 'otavio@email.com', 'Senha123_', 3),
     ('Juan', 'Sanchez', '2000-02-15', '11972215501', 'juan@email.com', 'Senha123_', 4),
     ('José', 'Silva', '1976-01-20', '11972044761', 'jose@email.com', 'Senha123_', null),
-    ('Maria', 'Santos', '1982-07-22', '1199814761', 'maria@email.com', 'Senha123_', null)
+    ('Maria', 'Santos', '1982-07-22', '1199814761', 'maria@email.com', 'Senha123_', null);
 
 INSERT INTO jogador (posicao, descricao, id_usuario) VALUES
     ('ALA', 1),

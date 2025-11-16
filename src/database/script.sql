@@ -32,7 +32,7 @@ CREATE TABLE jogador (
 	descricao VARCHAR(255),
 	id_usuario INT NOT NULL UNIQUE,
 
-	CONSTRAINT posicao chkPosicao CHECK(posicao IN ('FIXO', 'ALA', 'PIVO'));
+	CONSTRAINT chkPosicao CHECK(posicao IN ('FIXO', 'ALA', 'PIVO')),
 	CONSTRAINT fk_jogador_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
 );
 
