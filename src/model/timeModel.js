@@ -21,7 +21,7 @@ async function listar(req, res) {
     return resultado;
 }
 
-async function listarPorCidade(cidade) {
+async function filtrarPorCidade(cidade) {
     const instrucao = `
         SELECT * FROM time t JOIN endereco e ON t.id_endereco = e.id_endereco WHERE cidade LIKE CONCAT('%', ?, '%')
     `;
@@ -33,7 +33,7 @@ async function listarPorCidade(cidade) {
     return resultado;
 }
 
-async function listarPorUf(uf) {
+async function filtrarPorUf(uf) {
     const instrucao = `
         SELECT * FROM time t JOIN endereco e ON t.id_endereco = e.id_endereco WHERE uf = ?
     `;
@@ -65,7 +65,7 @@ async function pesquisar(q) {
 module.exports = {
     cadastrar,
     listar,
-    listarPorCidade,
-    listarPorUf,
+    filtrarPorCidade,
+    filtrarPorUf,
     pesquisar
 }

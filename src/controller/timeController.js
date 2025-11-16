@@ -19,13 +19,13 @@ async function listar(req, res) {
         const { cidade, uf, q } = req.query;
 
         if (cidade) {
-            const resultado = await timeModel.listarPorCidade(cidade);
+            const resultado = await timeModel.filtrarPorCidade(cidade);
 
             res.status(200).json({ resultado });
         }
 
         if (uf) {
-            const resultado = await timeModel.listarPorUf(uf);
+            const resultado = await timeModel.filtrarPorUf(uf);
 
             res.status(200).json({ resultado });
         }
