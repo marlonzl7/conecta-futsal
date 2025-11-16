@@ -16,9 +16,25 @@ async function cadastrar(req, res) {
 
 async function listar(req, res) {
     try {
-        const resultado = await timeModel.listar();
-        
-        res.status(200).json({ resultado });
+        const { cidade, uf, q } = req.query;
+
+        if (cidade) {
+            const resultado = await timeModel.listarPorCidade(cidade);
+
+            res.status(200).json({ resultado });
+        }
+
+        if (uf) {
+            const resultado = await timeModel.listarPorUf(uf);
+
+            res.status(200).json({ resultado });
+        }
+
+        if (q) {
+            const resultado = await timeModel.pesquisar(q);
+
+            res.status(200).json({ resultado });
+        }
     } catch (erro) {
         console.error("Erro ao listar times: ", erro);
 
@@ -26,22 +42,7 @@ async function listar(req, res) {
     }
 }
 
-async function pesquisar(req, res) {
-    try {
-        const { q } = req.query;
-
-        const resultado = await timeModel.pesquisar(q);
-
-        res.status(200).json({ resultado });
-    } catch (erro) {
-        console.error("Erro ao pesquisar por time: ", erro);
-
-        res.status(500).json({ error: "Erro interno no servidor." });
-    }
-}
-
 module.exports = {
     cadastrar,
-    listar,
-    pesquisar
+    listar
 }

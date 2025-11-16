@@ -21,6 +21,35 @@ async function listar(req, res) {
     return resultado;
 }
 
+async function listarPorCidade(cidade) {
+    const instrucao = `
+        SELECT * FROM time t JOIN endereco e ON t.id_endereco = e.id_endereco WHERE cidade LIKE CONCAT('%', ?, '%')
+    `;
+
+    const parametro = [cidade];
+
+    const resultado = await database.execute(instrucao, parametro);
+
+    return resultado;
+}
+
+async function listarPorUf(uf) {
+    const instrucao = `
+        SELECT * FROM time t JOIN endereco e ON t.id_endereco = e.id_endereco WHERE uf = ?
+    `;
+
+    const parametro = [uf];
+
+    console.log(uf);
+    console.log(parametro);
+
+    const resultado = await database.execute(instrucao, parametro);
+
+    console.log(resultado);
+
+    return resultado;
+}
+
 async function pesquisar(q) {
     const instrucao = `
         SELECT * FROM time WHERE nome LIKE CONCAT('%', ?, '%') OR descricao LIKE CONCAT('%', ?, '%')
@@ -36,5 +65,7 @@ async function pesquisar(q) {
 module.exports = {
     cadastrar,
     listar,
+    listarPorCidade,
+    listarPorUf,
     pesquisar
 }

@@ -35,6 +35,19 @@ async function listarPorId(id) {
     return resultado;
 }
 
+async function listarPorUf(uf) {
+    const instrucao = `
+        SELECT * FROM peneira p JOIN endereco e ON p.id_endereco = e.id_endereco WHERE e.uf = ?
+    `;
+
+    const parametro = [uf];
+
+    const resultado = await database.execute(instrucao, parametro);
+
+    return resultado;
+}
+
+
 async function pesquisar(q) {
     const instrucao = `
         SELECT * FROM peneira WHERE titulo LIKE CONCAT('%', ?, '%') OR descricao LIKE CONCAT('%', ?, '%')
@@ -51,5 +64,6 @@ module.exports = {
     cadastrar,
     listar,
     listarPorId,
+    listarPorUf,
     pesquisar
 }
