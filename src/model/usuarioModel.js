@@ -9,12 +9,16 @@ async function verificarExistencia(email) {
     return resultado.length > 0;
 }
 
-async function cadastrar(nome, sobrenome, dataNascimento, telefone, email, senha) {
+async function cadastrar(nome, sobrenome, dataNascimento, telefone, email, senha, tipoUsuario) {
 
     const existe = await verificarExistencia(email);
 
     if (existe) {
         throw "EMAIL_DUPLICADO";
+    }
+
+    if (tipoUsuario.toLowerCase() !== "jogador" && tipoUsuario.toLowerCase() !== "tecnico") {
+        throw "TIPO_USUARIO_INVALIDO";
     }
 
     const senhaHash = gerarHash(senha);
@@ -28,17 +32,42 @@ async function cadastrar(nome, sobrenome, dataNascimento, telefone, email, senha
 
     const resultado = await database.execute(instrucao, parametros);
 
-    console.log(resultado);
+    if (tipoUsuario.toLowerCase() === "jogador") {
+        const jogadorModel = require("./../model/jogadorModel");
+        await jogadorModel.cadastrar(resultado.insertId)
+    } else if (tipoUsuario.toLowerCase() === "tecnico") {
+        const tecnicoModel = require("./../model/tecnicoModel");
+        await tecnicoModel.cadastrar(resultado.insertId);
+    }
 
     return resultado;
 }
 
 async function autenticar(email, senha) {
-    const instrucao = `SELECT id_usuario, nome, email, senha FROM usuario WHERE email = ?`;
+    const instrucao = `
+        SELECT 
+            u.id_usuario, 
+            u.nome, 
+            u.email, 
+            u.senha,
+            j.id_jogador,
+            t.id_tecnico 
+        FROM usuario u
+            LEFT JOIN jogador j ON j.id_usuario = u.id_usuario
+            LEFT JOIN tecnico t ON t.id_usuario = u.id_usuario
+                WHERE email = ?
+    `;
+
     const parametro = [email];
     const resultado = await database.execute(instrucao, parametro);
 
-    return resultado.length ? resultado[0] : null;
+    const usuario = resultado.length ? resultado[0] : null;
+
+    if (!usuario || !compararSenhas(senha, usuario.senha)) {
+        throw "CREDENCIAIS_INVALIDAS";
+    }
+
+    return usuario;
 }
 
 module.exports = {

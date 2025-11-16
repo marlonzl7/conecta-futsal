@@ -6,16 +6,8 @@ async function cadastrar(req, res) {
         const { nome, sobrenome, dataNascimento, telefone, email, senha, tipoUsuario } = req.body;
 
         const resultado = await usuarioModel.cadastrar(
-            nome, sobrenome, dataNascimento, telefone, email, senha
+            nome, sobrenome, dataNascimento, telefone, email, senha, tipoUsuario
         );
-
-        if (tipoUsuario.toLowerCase() === "jogador") {
-            const jogadorModel = require("./../model/jogadorModel");
-            await jogadorModel.cadastrar(resultado.idUsuario)
-        } else if (tipoUsuario.toLowerCase() === "tecnico") {
-            const tecnicoModel = require("./../model/tecnicoModel");
-            await tecnicoModel.cadastrar(resultado.idUsuario);
-        }
 
         res.status(201).json({ message: "Usuário cadastrado com sucesso!", resultado });
     } catch (erro) {
@@ -23,6 +15,8 @@ async function cadastrar(req, res) {
         
         if (erro == "EMAIL_DUPLICADO") {
             res.status(409).json({ error: "Este email já está em uso. "});
+        } else if (erro == "TIPO_USUARIO_INVALIDO") {
+            res.status(400).json({ error: "Tipo de usuário inválido. São aceitos apenas [Jogador, Técnico] " });
         } else {
             res.status(500).json({ error: "Erro interno no servidor. "});
         }
@@ -34,17 +28,17 @@ async function autenticar(req, res) {
         const { email, senha } = req.body;
         const usuario = await usuarioModel.autenticar(email, senha);
 
-        if (!usuario || !compararSenhas(senha, usuario.senha)) {
-            return res.status(403).json({ error: "Email ou senha inválidos" });
-        }
-
         res.status(200).json({
             idUsuario: usuario.id_usuario,
             nome: usuario.nome
         });
     } catch (erro) {
         console.error("Erro ao autenticar: ", erro);
-        res.status(500).json({ error: "Erro interno no servidor. "});
+        if (erro == "CREDENCIAIS_INVALIDAS") {
+            res.status(401).json({ error: "Email ou senha inválidos. " });
+        } else {
+            res.status(500).json({ error: "Erro interno no servidor. "});
+        }
     }
 }
 
