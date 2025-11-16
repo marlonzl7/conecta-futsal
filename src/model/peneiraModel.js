@@ -15,7 +15,7 @@ async function cadastrar(
     return resultado;
 }
 
-async function listar(req, res) {
+async function listar() {
     const instrucao = `SELECT * FROM peneira`;
 
     const resultado = await database.execute(instrucao);
@@ -23,7 +23,20 @@ async function listar(req, res) {
     return resultado;
 }
 
+async function pesquisar(input) {
+    const instrucao = `
+        SELECT * FROM peneira WHERE titulo LIKE CONCAT('%', ?, '%')
+    `;
+
+    const parametro = [input];
+
+    const resultado = await database.execute(instrucao, parametro);
+
+    return resultado;
+}
+
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    pesquisar
 }
