@@ -32,6 +32,7 @@ CREATE TABLE jogador (
 	descricao VARCHAR(255),
 	id_usuario INT NOT NULL UNIQUE,
 
+	CONSTRAINT posicao chkPosicao CHECK(posicao IN ('FIXO', 'ALA', 'PIVO'));
 	CONSTRAINT fk_jogador_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
 );
 
@@ -65,7 +66,7 @@ CREATE TABLE peneira (
 	descricao VARCHAR(255) NOT NULL,
 	status BOOLEAN DEFAULT TRUE,
 	data_inicio_inscricao DATE NOT NULL,
-	data_final_incricao DATE NOT NULL,
+	data_final_inscricao DATE NOT NULL,
 	data_hora_realizacao DATETIME NOT NULL,
 	id_time INT NOT NULL,
 	id_endereco INT NOT NULL,
