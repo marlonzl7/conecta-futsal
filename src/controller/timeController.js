@@ -26,7 +26,22 @@ async function listar(req, res) {
     }
 }
 
+async function pesquisar(req, res) {
+    try {
+        const { q } = req.query;
+
+        const resultado = await timeModel.pesquisar(q);
+
+        res.status(200).json({ resultado });
+    } catch (erro) {
+        console.error("Erro ao pesquisar por time: ", erro);
+
+        res.status(500).json({ error: "Erro interno no servidor." });
+    }
+}
+
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    pesquisar
 }

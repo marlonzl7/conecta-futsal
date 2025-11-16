@@ -23,12 +23,12 @@ async function listar() {
     return resultado;
 }
 
-async function pesquisar(input) {
+async function pesquisar(q) {
     const instrucao = `
-        SELECT * FROM peneira WHERE titulo LIKE CONCAT('%', ?, '%')
+        SELECT * FROM peneira WHERE titulo LIKE CONCAT('%', ?, '%') OR descricao LIKE CONCAT('%', ?, '%')
     `;
 
-    const parametro = [input];
+    const parametro = [q];
 
     const resultado = await database.execute(instrucao, parametro);
 

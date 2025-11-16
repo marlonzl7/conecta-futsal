@@ -21,7 +21,20 @@ async function listar(req, res) {
     return resultado;
 }
 
+async function pesquisar(input) {
+    const instrucao = `
+        SELECT * FROM time WHERE titulo LIKE CONCAT('%', ?, '%') OR descricao LIKE CONCAT('%', ?, '%')
+    `;
+
+    const parametro = [q];
+
+    const resultado = await database.execute(instrucao, parametro);
+
+    return resultado;
+}
+
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    pesquisar
 }

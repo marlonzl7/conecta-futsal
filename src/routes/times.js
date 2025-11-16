@@ -11,4 +11,8 @@ router.get("/listar", function(req, res) {
     timeController.listar(req, res);
 })
 
+router.get("/pesquisar", function(req, res) {
+    timeController.pesquisar(req, res);
+})
+
 module.exports = router;
