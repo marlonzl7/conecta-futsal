@@ -7,4 +7,8 @@ router.post("/cadastrar", function(req, res) {
     timeController.cadastrar(req, res);
 })
 
+router.get("/listar", function(req, res) {
+    timeController.listar(req, res);
+})
+
 module.exports = router;

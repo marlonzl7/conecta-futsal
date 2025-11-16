@@ -13,6 +13,15 @@ async function cadastrar(nome, descricao, idTecnico, idEndereco) {
     return resultado;
 }
 
+async function listar(req, res) {
+    const instrucao = `SELECT * FROM time`;
+
+    const resultado = await database.execute(instrucao);
+
+    return resultado;
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    listar
 }
