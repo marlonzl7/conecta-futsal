@@ -27,7 +27,7 @@ function execute(instruction, params = []) {
 				reject(error);
 			}
 
-			console.log(results);
+			console.log("Resultado da query: " + results);
 			resolve(results);
 		});
 
