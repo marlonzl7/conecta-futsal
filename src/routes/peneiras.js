@@ -7,4 +7,8 @@ router.post("/cadastrar", function (req, res) {
     peneiraController.cadastrar(req, res);
 })
 
+router.get("/listar", function (req, res) {
+    peneiraController.listar(req, res);
+})
+
 module.exports = router;

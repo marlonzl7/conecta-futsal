@@ -15,6 +15,15 @@ async function cadastrar(
     return resultado;
 }
 
+async function listar(req, res) {
+    const instrucao = `SELECT * FROM peneira`;
+
+    const resultado = await database.execute(instrucao);
+
+    return resultado;
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    listar
 }
