@@ -20,7 +20,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var enderecoRouter = require("./src/routes/enderecos");
 // var timeRouter = require("./src/routes/times");
 // var peneiraRouter = require("./src/routes/peneiras");
-// var categoriaBaseRouter = require("./src/routes/categoriasBase");
+var categoriaBaseRouter = require("./src/routes/categoriasBase");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +33,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/enderecos", enderecoRouter);
 // app.use("/times", timeRouter);
 // app.use("/peneiras", peneiraRouter);
-// app.use("/categorias-de-base", categoriaBaseRouter);
+app.use("/categorias-de-base", categoriaBaseRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
