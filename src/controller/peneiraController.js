@@ -45,6 +45,10 @@ async function listar(req, res) {
 
             res.status(200).json({ resultado });
         }
+
+        const resultado = await peneiraModel.listar();
+
+        res.status(200).json({ resultado });
     } catch (erro) {
         console.error("Erro ao listar peneiras: ", erro);
 

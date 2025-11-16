@@ -16,8 +16,8 @@ async function cadastrar(
 }
 
 async function listar() {
-    const instrucao = `SELECT * FROM peneira`;
-
+    const instrucao = `SELECT * FROM vw_listar_peneiras`;
+                
     const resultado = await database.execute(instrucao);
 
     return resultado;
