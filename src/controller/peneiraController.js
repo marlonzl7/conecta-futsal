@@ -30,6 +30,14 @@ async function listar(req, res) {
     }
 }
 
+async function listarPorId(req, res) {
+    const { id } = req.query;
+
+    const resultado = await peneiraModel.listarPorId(id);
+
+    res.status(200).json({ resultado });
+}
+
 async function pesquisar(req, res) {
     try {
         const { q } = req.query;
@@ -47,5 +55,6 @@ async function pesquisar(req, res) {
 module.exports = {
     cadastrar,
     listar,
+    listarPorId,
     pesquisar
 }

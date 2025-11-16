@@ -11,6 +11,11 @@ router.get("/listar", function (req, res) {
     peneiraController.listar(req, res);
 })
 
+router.get("/listar-por-id", function (req, res) {
+    peneiraController.listarPorId(req, res);
+})
+
+
 router.get("/pesquisar", function (req, res) {
     peneiraController.pesquisar(req, res)
 })

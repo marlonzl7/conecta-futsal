@@ -23,12 +23,24 @@ async function listar() {
     return resultado;
 }
 
+async function listarPorId(id) {
+    const instrucao = `
+        SELECT * FROM peneira WHERE id_peneira = ?
+    `;
+
+    const parametro  = [id];
+
+    const resultado = await database.execute(instrucao, parametro);
+
+    return resultado;
+}
+
 async function pesquisar(q) {
     const instrucao = `
         SELECT * FROM peneira WHERE titulo LIKE CONCAT('%', ?, '%') OR descricao LIKE CONCAT('%', ?, '%')
     `;
 
-    const parametro = [q];
+    const parametro = [q, q];
 
     const resultado = await database.execute(instrucao, parametro);
 
@@ -38,5 +50,6 @@ async function pesquisar(q) {
 module.exports = {
     cadastrar,
     listar,
+    listarPorId,
     pesquisar
 }
