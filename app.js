@@ -17,6 +17,10 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
+var enderecoRouter = require("./src/routes/enderecos");
+// var timeRouter = require("./src/routes/times");
+// var peneiraRouter = require("./src/routes/peneiras");
+// var categoriaBaseRouter = require("./src/routes/categoriasBase");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,6 +30,10 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
+app.use("/enderecos", enderecoRouter);
+// app.use("/times", timeRouter);
+// app.use("/peneiras", peneiraRouter);
+// app.use("/categorias-de-base", categoriaBaseRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
@@ -38,7 +46,7 @@ app.listen(PORTA_APP, function () {
     ##   ##  ######   #####             ####     ##  ##     ##     ##  ##              ##      ####    ######  
     \n\n\n                                                                                                 
     Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar .: http://${HOST_APP}:${PORTA_APP} :. \n\n
-    Você está rodando sua aplicação em ambiente de .:${process.env.AMBIENTE_PROCESSO}:. \n\n
+    Você está rodando sua aplicação em ambiente de .:${process.env.NODE_ENV}:. \n\n
     \tSe .:desenvolvimento:. você está se conectando ao banco local. \n
     \tSe .:producao:. você está se conectando ao banco remoto. \n\n
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
