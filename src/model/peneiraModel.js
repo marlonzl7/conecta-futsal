@@ -35,9 +35,21 @@ async function listarPorId(id) {
     return resultado;
 }
 
-async function listarPorUf(uf) {
+async function listarAbertasPorCidade(cidade) {
     const instrucao = `
-        SELECT * FROM peneira p JOIN endereco e ON p.id_endereco = e.id_endereco WHERE e.uf = ?
+        SELECT * FROM peneira p JOIN endereco e ON p.id_endereco = e.id_endereco WHERE e.cidade LIKE CONCAT('%', ?, '%') AND p.status = TRUE;
+    `;
+
+    const parametro  = [cidade];
+
+    const resultado = await database.execute(instrucao, parametro);
+
+    return resultado;
+}
+
+async function listarAbertasPorUf(uf) {
+    const instrucao = `
+        SELECT * FROM peneira p JOIN endereco e ON p.id_endereco = e.id_endereco WHERE e.uf = ? AND p.status = TRUE;
     `;
 
     const parametro = [uf];
@@ -64,6 +76,7 @@ module.exports = {
     cadastrar,
     listar,
     listarPorId,
-    listarPorUf,
+    listarAbertasPorCidade,
+    listarAbertasPorUf,
     pesquisar
 }

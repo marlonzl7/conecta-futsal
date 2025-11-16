@@ -20,7 +20,7 @@ async function cadastrar(req, res) {
 
 async function listar(req, res) {
     try {
-        const { id, uf, q } = req.query;
+        const { id, cidade, uf, q } = req.query;
         
         if (id) {
             const resultado = await peneiraModel.listarPorId(id);
@@ -28,8 +28,14 @@ async function listar(req, res) {
             res.status(200).json({ resultado });
         }
 
+        if (cidade) {
+            const resultado = await peneiraModel.listarAbertasPorCidade(cidade);
+
+            res.status(200).json({ resultado });
+        }
+
         if (uf) {
-            const resultado = await peneiraModel.listarPorUf(uf);
+            const resultado = await peneiraModel.listarAbertasPorUf(uf);
 
             res.status(200).json({ resultado });
         }   
