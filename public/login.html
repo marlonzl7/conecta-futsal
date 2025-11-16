@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/forms.css">
     <link rel="stylesheet" href="./style/buttons.css">
+    <script src="./js/redirecionamentos.js"></script>
+    <script src="./js/autenticar.js"></script>
     <title>Conecta Futsal - Login</title>
 </head>
 <body>
@@ -38,42 +40,5 @@
         </div>
     </main>
 </body>
-
-<script>
-    function autenticar() {
-        const dados = {
-            email: document.getElementById("email").value,
-            senha: document.getElementById("senha").value,
-        };
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dados)
-        }) 
-        .then (function (resposta) {
-            if (!resposta.ok) {
-                throw "Erro ao autenticar";
-            }
-
-            resposta.json().then(json => {                
-                sessionStorage.ID_USUARIO = json.idUsuario;
-                sessionStorage.NOME = json.nome;
-
-                location.href="index.html";
-            })
-        })
-        .catch (function (erro) {
-            console.error("Erro: ", erro);
-            alert("Ocorreu um erro ao autenticar. Tente novamente.");
-        });
-    }
-
-    function redirecionarParaCadastro() {
-        location.href="/cadastro.html";
-    }
-</script>
 
 </html>
