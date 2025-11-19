@@ -23,7 +23,7 @@ async function listar() {
     return resultado;
 }
 
-async function listarPorId(id) {
+async function buscarPorIdPeneira(id) {
     const instrucao = `
         SELECT * FROM peneira WHERE id_peneira = ?
     `;
@@ -90,7 +90,7 @@ async function pesquisar(q) {
 module.exports = {
     cadastrar,
     listar,
-    listarPorId,
+    buscarPorIdPeneira,
     filtrarPeneirasAbertasPorCidade,
     filtrarPeneirasAbertasPorUf,
     listarQuantidadePeneirasPorRegiao,

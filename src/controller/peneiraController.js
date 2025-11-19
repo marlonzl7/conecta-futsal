@@ -37,7 +37,7 @@ async function listar(req, res) {
         const { id, cidade, uf, q } = req.query;
         
         if (id) {
-            const resultado = await peneiraModel.listarPorId(id);
+            const resultado = await peneiraModel.buscarPorIdPeneira(id);
 
             return res.status(200).json({ resultado });
         }

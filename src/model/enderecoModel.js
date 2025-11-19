@@ -29,7 +29,7 @@ async function inserirIdEnderecoUsuario(id_endereco, id_usuario) {
     return resultado;
 }
 
-async function listarPorIdEndereco(idEndereco) {
+async function buscarPorIdEndereco(idEndereco) {
     const instrucao = `
         SELECT * FROM endereco WHERE id_endereco = ?
     `;
@@ -41,7 +41,7 @@ async function listarPorIdEndereco(idEndereco) {
     return resultado;
 }
 
-async function listarPorIdUsuario(idUsuario) {
+async function buscarPorIdUsuario(idUsuario) {
     const instrucao = `
         SELECT e.* FROM endereco e JOIN usuario u ON e.id_endereco = u.id_endereco WHERE id_usuario = ?
     `;
@@ -55,6 +55,6 @@ async function listarPorIdUsuario(idUsuario) {
 
 module.exports = {
     cadastrar,
-    listarPorIdEndereco,
-    listarPorIdUsuario
+    buscarPorIdEndereco,
+    buscarPorIdUsuario
 }

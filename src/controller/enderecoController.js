@@ -16,11 +16,11 @@ async function cadastrar(req, res) {
     }
 }
 
-async function listarPorIdEndereco(req, res) {
+async function buscarPorIdEndereco(req, res) {
     try {
         const { id } = req.query;
 
-        const resultado = await enderecoModel.listarPorIdEndereco(id);
+        const resultado = await enderecoModel.buscarPorIdEndereco(id);
 
         res.status(200).json({ message: "Endereços de usuário listado com sucesso!", resultado });
     } catch (erro) {
@@ -30,7 +30,7 @@ async function listarPorIdEndereco(req, res) {
     }
 }
 
-async function listarPorIdUsuario(req, res) {
+async function buscarPorIdUsuario(req, res) {
     try {
         const { id } = req.query;
 
@@ -46,6 +46,6 @@ async function listarPorIdUsuario(req, res) {
 
 module.exports = {
     cadastrar,
-    listarPorIdEndereco,
-    listarPorIdUsuario
+    buscarPorIdEndereco,
+    buscarPorIdUsuario
 }
