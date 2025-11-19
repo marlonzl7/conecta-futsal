@@ -25,30 +25,30 @@ async function listar(req, res) {
         if (id) {
             const resultado = await peneiraModel.listarPorId(id);
 
-            res.status(200).json({ resultado });
+            return res.status(200).json({ resultado });
         }
 
         if (cidade) {
-            const resultado = await peneiraModel.listarAbertasPorCidade(cidade);
+            const resultado = await peneiraModel.filtrarPeneirasAbertasPorCidade(cidade);
 
-            res.status(200).json({ resultado });
+            return res.status(200).json({ resultado });
         }
 
         if (uf) {
-            const resultado = await peneiraModel.listarAbertasPorUf(uf);
+            const resultado = await peneiraModel.filtrarPeneirasAbertasPorUf(uf);
 
-            res.status(200).json({ resultado });
+            return res.status(200).json({ resultado });
         }   
         
         if (q) {
             const resultado = await peneiraModel.pesquisar(q);
 
-            res.status(200).json({ resultado });
+            return res.status(200).json({ resultado });
         }
 
         const resultado = await peneiraModel.listar();
 
-        res.status(200).json({ resultado });
+        return res.status(200).json({ resultado });
     } catch (erro) {
         console.error("Erro ao listar peneiras: ", erro);
 

@@ -35,7 +35,7 @@ async function listarPorId(id) {
     return resultado;
 }
 
-async function listarAbertasPorCidade(cidade) {
+async function filtrarPeneirasAbertasPorCidade(cidade) {
     const instrucao = `
         SELECT * FROM peneira p JOIN endereco e ON p.id_endereco = e.id_endereco WHERE e.cidade LIKE CONCAT('%', ?, '%') AND p.status = TRUE;
     `;
@@ -47,7 +47,7 @@ async function listarAbertasPorCidade(cidade) {
     return resultado;
 }
 
-async function listarAbertasPorUf(uf) {
+async function filtrarPeneirasAbertasPorUf(uf) {
     const instrucao = `
         SELECT * FROM peneira p JOIN endereco e ON p.id_endereco = e.id_endereco WHERE e.uf = ? AND p.status = TRUE;
     `;
@@ -76,7 +76,7 @@ module.exports = {
     cadastrar,
     listar,
     listarPorId,
-    listarAbertasPorCidade,
-    listarAbertasPorUf,
+    filtrarPeneirasAbertasPorCidade,
+    filtrarPeneirasAbertasPorUf,
     pesquisar
 }
