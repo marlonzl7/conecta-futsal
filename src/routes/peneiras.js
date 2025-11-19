@@ -11,4 +11,8 @@ router.get("/listar", function (req, res) {
     peneiraController.listar(req, res);
 })
 
+router.get("/listar-quantidade-por-regiao", function(req, res) {
+    peneiraController.listarQuantidadePeneirasPorRegiao(req, res);
+})
+
 module.exports = router;

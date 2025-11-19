@@ -18,6 +18,20 @@ async function cadastrar(req, res) {
     }
 }
 
+async function listarQuantidadePeneirasPorRegiao(req, res) {
+    try {
+        const resultado = await peneiraModel.listarQuantidadePeneirasPorRegiao();
+
+        console.log(resultado);
+
+        return res.status(200).json({ message: "Quantidade de peneiras filtrado por região listado com sucesso ", resultado });
+    } catch (erro) {
+        console.error("Erro ao listar quantidade de peneiras por região: ", erro);
+
+        res.status(500).json({ error: "Erro interno no servidor." });
+    }
+}
+
 async function listar(req, res) {
     try {
         const { id, cidade, uf, q } = req.query;
@@ -58,5 +72,6 @@ async function listar(req, res) {
 
 module.exports = {
     cadastrar,
+    listarQuantidadePeneirasPorRegiao,
     listar
 }

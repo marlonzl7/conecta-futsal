@@ -59,6 +59,21 @@ async function filtrarPeneirasAbertasPorUf(uf) {
     return resultado;
 }
 
+async function listarQuantidadePeneirasPorRegiao() {
+    const instrucao = `
+        SELECT 
+            COUNT(p.id_peneira) AS qtd_peneira, 
+            CONCAT(e.cidade, ' ', e.uf) AS regiao 
+        FROM peneira p 
+            JOIN endereco e 
+                ON p.id_endereco = e.id_endereco 
+            GROUP BY p.id_peneira;
+    `;
+
+    const resultado = await database.execute(instrucao);
+
+    return resultado;
+}
 
 async function pesquisar(q) {
     const instrucao = `
@@ -78,5 +93,6 @@ module.exports = {
     listarPorId,
     filtrarPeneirasAbertasPorCidade,
     filtrarPeneirasAbertasPorUf,
+    listarQuantidadePeneirasPorRegiao,
     pesquisar
 }
