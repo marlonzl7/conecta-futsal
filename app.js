@@ -17,6 +17,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
+var jogadorRouter = require("./src/routes/jogadores");
 var enderecoRouter = require("./src/routes/enderecos");
 var timeRouter = require("./src/routes/times");
 var peneiraRouter = require("./src/routes/peneiras");
@@ -31,6 +32,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
+app.use("/jogadores", jogadorRouter);
 app.use("/enderecos", enderecoRouter);
 app.use("/times", timeRouter);
 app.use("/peneiras", peneiraRouter);
