@@ -21,20 +21,24 @@ async function listar(req, res) {
         if (cidade) {
             const resultado = await timeModel.filtrarPorCidade(cidade);
 
-            res.status(200).json({ resultado });
+            return res.status(200).json({ resultado });
         }
 
         if (uf) {
             const resultado = await timeModel.filtrarPorUf(uf);
 
-            res.status(200).json({ resultado });
+            return res.status(200).json({ resultado });
         }
 
         if (q) {
             const resultado = await timeModel.pesquisar(q);
 
-            res.status(200).json({ resultado });
+            return res.status(200).json({ resultado });
         }
+
+        const resultado = await timeModel.listar();
+
+        return res.status(200).json({ resultado });
     } catch (erro) {
         console.error("Erro ao listar times: ", erro);
 
