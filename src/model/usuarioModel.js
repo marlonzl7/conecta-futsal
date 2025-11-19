@@ -70,7 +70,20 @@ async function autenticar(email, senha) {
     return usuario;
 }
 
+async function buscarPorId(id_usuario) {
+    const instrucao = `
+        SELECT * FROM usuario u WHERE id_usuario = ?
+    `;
+
+    const parametro = [id_usuario];
+
+    const resultado = await database.execute(instrucao, parametro);
+
+    return resultado;
+}
+
 module.exports = {
     cadastrar,
-    autenticar
+    autenticar,
+    buscarPorId
 };

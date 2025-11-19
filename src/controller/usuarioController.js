@@ -42,7 +42,26 @@ async function autenticar(req, res) {
     }
 }
 
+async function buscarPorId(req, res) {
+    try {
+        const { id } = req.query;
+
+        console.log(id);
+
+        const resultado = await usuarioModel.buscarPorId(id);
+
+        console.log(resultado);
+
+        return res.status(200).json({ message: "Usuário filtrado por id listado com sucesso", resultado });
+    } catch (erro) {
+        console.error("Erro ao autenticar: ", erro);
+        
+        res.status(500).json({ error: "Erro interno no servidor. "});
+    }
+}
+
 module.exports = {
     cadastrar,
-    autenticar
+    autenticar,
+    buscarPorId
 }
