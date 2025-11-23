@@ -60,12 +60,11 @@ INSERT INTO categoria_base (nome) VALUES
     ('Master');
 
 INSERT INTO peneira (titulo, descricao, data_inicio_inscricao, data_final_inscricao, data_hora_realizacao, id_time, id_endereco, id_categoria_base) VALUES
-    ('Peneira: Travessa Futsal - SUB-20', 'Peneira para o Travessa e disputar o campeonato paulista Série Prata', '2025-11-16', '2025-11-30', '2025-12-04', 2, 6, 16),
-    ('Peneira: Vila Nova Futsal - SUB-20', 'Peneira para o Vila Nova e disputar campeonatos da Várzea', '2025-11-01', '2025-11-30', '2025-12-08', 1, 7, 18),
-    ('Peneira: Vila Santista Futsal - SUB-10', 'Peneira para o Vila Santista disputar o campeonato paulista série ouro', '2025-01-03', '2025-01-15', '2025-02-18', 3, 9, 6),
-    ('Peneira: Vila Nova Futsal - SUB-12', 'Peneira para o Vila Santista disputar o campeonato paulista série ouro', '2025-01-03', '2025-01-15', '2025-02-18', 3, 9, 8),
-    ('Peneira: Vila Nova Futsal - SUB-12', 'Peneira para o E.C.U.S disputar o campeonato paulista série ouro', '2025-01-03', '2025-01-15', '2025-02-15', 4, 8, 8),
-    ('Peneira: Vila Nova Futsal - SUB-14', 'Peneira para o E.C.U.S disputar o campeonato paulista série ouro', '2025-01-03', '2025-01-15', '2025-02-15', 4, 8, 10);
+    ('Travessa Futsal - SUB-20', 'Peneira para o Travessa e disputar o campeonato paulista Série Prata', '2025-11-16', '2025-11-30', '2025-12-04', 2, 6, 16),
+    ('Vila Santista Futsal - SUB-10', 'Peneira para o Vila Santista disputar o campeonato paulista série ouro', '2025-01-03', '2025-01-15', '2025-02-18', 3, 9, 6),
+    ('Vila Santista Futsal - SUB-12', 'Peneira para o Vila Santista disputar o campeonato paulista série ouro', '2025-01-03', '2025-01-15', '2025-02-18', 3, 9, 8),
+    ('E.C.U.S - SUB-12', 'Peneira para o E.C.U.S disputar o campeonato paulista série ouro', '2025-01-03', '2025-01-15', '2025-02-15', 4, 8, 8),
+    ('E.C.U.S - SUB-14', 'Peneira para o E.C.U.S disputar o campeonato paulista série ouro', '2025-01-03', '2025-01-15', '2025-02-15', 4, 8, 10);
 
 INSERT INTO inscricao (id_peneira, id_jogador) VALUES
     (2, 1),
