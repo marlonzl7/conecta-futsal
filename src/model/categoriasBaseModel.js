@@ -5,8 +5,6 @@ async function listar() {
 
     const resultado = await database.execute(instrucao);
 
-    console.log("Model");
-
     return resultado;
 }
 

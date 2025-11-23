@@ -1,8 +1,8 @@
-var categoriaBaseController = require("../model/categoriasBaseModel");
+var categoriaBaseModel = require("../model/categoriasBaseModel");
 
 async function listar(req, res) {
     try {
-        const resultado = await categoriaBaseController.listar();
+        const resultado = await categoriaBaseModel.listar();
 
         res.status(200).json({ resultado });
     } catch (erro) {
