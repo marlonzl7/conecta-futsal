@@ -1,4 +1,5 @@
 var enderecoModel = require("../model/enderecoModel");
+const UFS = require("../utils/ufs");
 
 async function cadastrar(req, res) {
     try {
@@ -18,9 +19,9 @@ async function cadastrar(req, res) {
 
 async function buscarPorIdEndereco(req, res) {
     try {
-        const { id } = req.query;
+        const { idEndereco } = req.params;
 
-        const resultado = await enderecoModel.buscarPorIdEndereco(id);
+        const resultado = await enderecoModel.buscarPorIdEndereco(idEndereco);
 
         res.status(200).json({ message: "Endereços de usuário listado com sucesso!", resultado });
     } catch (erro) {
@@ -32,9 +33,9 @@ async function buscarPorIdEndereco(req, res) {
 
 async function buscarPorIdUsuario(req, res) {
     try {
-        const { id } = req.query;
+        const { idUsuario } = req.params;
 
-        const resultado = await enderecoModel.listarPorIdUsuario(id);
+        const resultado = await enderecoModel.buscarPorIdUsuario(idUsuario);
 
         res.status(200).json({ message: "Endereços de usuário listado com sucesso!", resultado });
     } catch (erro) {
@@ -44,8 +45,13 @@ async function buscarPorIdUsuario(req, res) {
     }
 }
 
+function listarUFs(req, res) {
+    res.status(200).json(UFS);
+}
+
 module.exports = {
     cadastrar,
     buscarPorIdEndereco,
-    buscarPorIdUsuario
+    buscarPorIdUsuario,
+    listarUFs
 }
