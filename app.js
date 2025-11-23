@@ -24,6 +24,7 @@ var timeRouter = require("./src/routes/times");
 var peneiraRouter = require("./src/routes/peneiras");
 var categoriaBaseRouter = require("./src/routes/categoriasBase");
 var dashboardRouter = require("./src/routes/dashboard");
+var inscricaoRouter = require("./src/routes/inscricoes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,6 +41,7 @@ app.use("/times", timeRouter);
 app.use("/peneiras", peneiraRouter);
 app.use("/categorias-de-base", categoriaBaseRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/inscricoes", inscricaoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
