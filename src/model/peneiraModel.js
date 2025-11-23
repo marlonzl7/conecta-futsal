@@ -45,7 +45,15 @@ async function listarQuantidadePorUf() {
 
 async function buscarPorIdPeneira(id) {
     const instrucao = `
-        SELECT * FROM vw_listar_peneiras_por_estado
+        SELECT *, c.nome
+        FROM peneira p
+        JOIN time t
+            ON p.id_time = t.id_time
+        JOIN endereco e
+            ON p.id_endereco = e.id_endereco
+        JOIN categoria_base c
+            ON p.id_categoria_base = c.id_categoria_base
+        WHERE p.id_peneira = ?
     `;
 
     const parametro  = [id];
@@ -57,7 +65,11 @@ async function buscarPorIdPeneira(id) {
 
 async function filtrarPeneirasAbertasPorCidade(cidade) {
     const instrucao = `
-        SELECT * FROM peneira p JOIN endereco e ON p.id_endereco = e.id_endereco WHERE e.cidade LIKE CONCAT('%', ?, '%') AND p.status = TRUE;
+        SELECT * 
+        FROM peneira p 
+        JOIN endereco e ON p.id_endereco = e.id_endereco 
+        WHERE e.cidade 
+        LIKE CONCAT('%', ?, '%') AND p.status = TRUE;
     `;
 
     const parametro  = [cidade];
@@ -69,7 +81,10 @@ async function filtrarPeneirasAbertasPorCidade(cidade) {
 
 async function filtrarPeneirasAbertasPorUf(uf) {
     const instrucao = `
-        SELECT * FROM peneira p JOIN endereco e ON p.id_endereco = e.id_endereco WHERE e.uf = ? AND p.status = TRUE;
+        SELECT * 
+        FROM peneira p 
+        JOIN endereco e ON p.id_endereco = e.id_endereco 
+        WHERE e.uf = ? AND p.status = TRUE;
     `;
 
     const parametro = [uf];

@@ -11,12 +11,12 @@ router.get("/listar", function (req, res) {
     peneiraController.listar(req, res);
 })
 
-router.get("/listar-quantidade", function(req, res) {
-    peneiraController.listarQuantidadePorFiltro(req, res);
-})
-
 router.get("/:idPeneira", function (req, res) {
     peneiraController.buscarPorId(req, res);
+})
+
+router.get("/listar-quantidade", function(req, res) {
+    peneiraController.listarQuantidadePorFiltro(req, res);
 })
 
 module.exports = router;
