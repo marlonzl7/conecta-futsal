@@ -2,6 +2,7 @@ USE conecta_futsal;
 
 CREATE VIEW vw_listar_peneiras AS
     SELECT 
+        p.id_peneira,
         t.nome AS time,
         c.nome AS categoria_de_base,
         CONCAT(e.logradouro, ' ', e.numero, ' ', e.cidade) AS local,
