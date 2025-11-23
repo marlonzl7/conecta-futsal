@@ -2,8 +2,8 @@ USE conecta_futsal;
 
 CREATE VIEW vw_listar_peneiras AS
     SELECT 
-        t.nome as time,
-        c.nome as 'categoria_de_base',
+        t.nome AS time,
+        c.nome AS categoria_de_base,
         CONCAT(e.logradouro, ' ', e.numero, ' ', e.cidade) AS local,
         p.data_hora_realizacao AS data
     FROM peneira p 
@@ -16,20 +16,21 @@ CREATE VIEW vw_listar_peneiras AS
 
 CREATE VIEW vw_listar_peneiras_por_cidade AS
     SELECT
-        e.cidade,
-        COUNT(e.cidade) as quantidade
+        CONCAT(e.cidade, ' - ', e.uf) AS Cidade,
+        COUNT(*) AS quantidade
     FROM peneira p
     JOIN endereco e
         ON p.id_endereco = e.id_endereco
     GROUP BY
-        (e.cidade);
+        e.cidade,
+        e.uf;
 
 CREATE VIEW vw_listar_peneiras_por_estado AS
     SELECT
         e.uf,
-        COUNT(e.uf) as quantidade
+        COUNT(*) AS quantidade
     FROM peneira p
     JOIN endereco e
         ON p.id_endereco = e.id_endereco
     GROUP BY
-        (e.uf);
+        e.uf;
