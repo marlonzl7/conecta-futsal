@@ -23,9 +23,29 @@ async function listar() {
     return resultado;
 }
 
+async function listarQuantidadePorCidade(cidade) {
+    const instrucao = `
+        SELECT * FROM vw_listar_peneiras_por_cidade
+    `;
+
+    const resultado = await database.execute(instrucao);
+
+    return resultado;
+}
+
+async function listarQuantidadePorUf() {
+    const instrucao = `
+        SELECT * FROM vw_listar_peneiras_por_estado
+    `;
+
+    const resultado = await database.execute(instrucao);
+
+    return resultado;
+}
+
 async function buscarPorIdPeneira(id) {
     const instrucao = `
-        SELECT * FROM peneira WHERE id_peneira = ?
+        SELECT * FROM vw_listar_peneiras_por_estado
     `;
 
     const parametro  = [id];
@@ -59,22 +79,6 @@ async function filtrarPeneirasAbertasPorUf(uf) {
     return resultado;
 }
 
-async function listarQuantidadePeneirasPorRegiao() {
-    const instrucao = `
-        SELECT 
-            COUNT(p.id_peneira) AS qtd_peneira, 
-            CONCAT(e.cidade, ' ', e.uf) AS regiao 
-        FROM peneira p 
-            JOIN endereco e 
-                ON p.id_endereco = e.id_endereco 
-            GROUP BY p.id_peneira;
-    `;
-
-    const resultado = await database.execute(instrucao);
-
-    return resultado;
-}
-
 async function pesquisar(q) {
     const instrucao = `
         SELECT * FROM peneira WHERE titulo LIKE CONCAT('%', ?, '%') OR descricao LIKE CONCAT('%', ?, '%')
@@ -91,8 +95,9 @@ module.exports = {
     cadastrar,
     listar,
     buscarPorIdPeneira,
+    listarQuantidadePorCidade,
+    listarQuantidadePorUf,
     filtrarPeneirasAbertasPorCidade,
     filtrarPeneirasAbertasPorUf,
-    listarQuantidadePeneirasPorRegiao,
     pesquisar
 }

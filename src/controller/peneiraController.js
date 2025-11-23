@@ -18,29 +18,52 @@ async function cadastrar(req, res) {
     }
 }
 
-async function listarQuantidadePeneirasPorRegiao(req, res) {
+async function listar(req, res) {
     try {
-        const resultado = await peneiraModel.listarQuantidadePeneirasPorRegiao();
+        const resultado = await peneiraModel.listar();
 
-        console.log(resultado);
+        const { q } = req.query;
+        
+        if (q) {
+            const resultado = await peneiraModel.pesquisar(q);
+            return res.status(200).json({ resultado });
+        }
 
-        return res.status(200).json({ message: "Quantidade de peneiras filtrado por região listado com sucesso ", resultado });
+        return res.status(200).json({ resultado });
+        
     } catch (erro) {
-        console.error("Erro ao listar quantidade de peneiras por região: ", erro);
+        console.error("Erro ao listar peneiras: ", erro);
 
-        res.status(500).json({ error: "Erro interno no servidor." });
+        res.status(500).json({ error: "Erro interno no servidor. "});
     }
 }
 
-async function listar(req, res) {
+async function listarQuantidadePorFiltro(req, res) {
     try {
-        const { id, cidade, uf, q } = req.query;
-        
-        if (id) {
-            const resultado = await peneiraModel.buscarPorIdPeneira(id);
-
+        const { cidade, uf } = req.query;
+    
+        if (cidade) {
+            const resultado = await peneiraModel.listarQuantidadePorCidade(cidade);
             return res.status(200).json({ resultado });
         }
+
+        if (uf) {
+            const resultado = await peneiraModel.listarQuantidadePorUf(uf);
+            return res.status(200).json({ resultado });
+        }
+
+        return res.status(400).json({ error: "Nenhum filtro enviado" });
+
+    } catch (erro) {
+        console.error("Erro ao listar quantidade de peneiras por cidade: ", erro);
+
+        res.status(500).json({ error: "Erro interno no servidor. "});
+    }
+}
+
+async function filtrar(req, res) {
+    try {
+        const { cidade, uf, q } = req.query;
 
         if (cidade) {
             const resultado = await peneiraModel.filtrarPeneirasAbertasPorCidade(cidade);
@@ -60,9 +83,7 @@ async function listar(req, res) {
             return res.status(200).json({ resultado });
         }
 
-        const resultado = await peneiraModel.listar();
-
-        return res.status(200).json({ resultado });
+        return listar(req, res);
     } catch (erro) {
         console.error("Erro ao listar peneiras: ", erro);
 
@@ -70,8 +91,24 @@ async function listar(req, res) {
     }
 }
 
+async function buscarPorId(req, res) {
+    try {
+        const { idPeneira } = req.params;
+
+        const resultado = await peneiraModel.buscarPorIdPeneira(idPeneira);
+
+        return res.status(200).json({ resultado });
+    } catch (erro) {
+        console.error("Erro ao listar peneira: ", erro);
+
+        res.status(500).json({ error: "Erro interno no servidor. "});
+    }       
+}
+
 module.exports = {
     cadastrar,
-    listarQuantidadePeneirasPorRegiao,
-    listar
+    listar,
+    listarQuantidadePorFiltro,
+    buscarPorId,
+    filtrar
 }
