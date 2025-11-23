@@ -11,7 +11,7 @@ router.post("/autenticar", function(req, res) {
     usuarioController.autenticar(req, res);
 })
 
-router.get("/buscar", function(req, res) {
+router.get("/:idUsuario", function(req, res) {
     usuarioController.buscarPorId(req, res);
 })
 

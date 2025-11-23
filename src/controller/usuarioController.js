@@ -1,5 +1,4 @@
 var usuarioModel = require("../model/usuarioModel");
-const { compararSenhas } = require("../utils/senhaUtils");
 
 async function cadastrar(req, res) {
     try {
@@ -27,10 +26,11 @@ async function autenticar(req, res) {
     try {
         const { email, senha } = req.body;
         const usuario = await usuarioModel.autenticar(email, senha);
-
+        
         res.status(200).json({
             idUsuario: usuario.id_usuario,
-            nome: usuario.nome
+            nome: usuario.nome,
+            email: usuario.email
         });
     } catch (erro) {
         console.error("Erro ao autenticar: ", erro);
@@ -44,11 +44,9 @@ async function autenticar(req, res) {
 
 async function buscarPorId(req, res) {
     try {
-        const { id } = req.query;
+        const { idUsuario } = req.params;
 
-        console.log(id);
-
-        const resultado = await usuarioModel.buscarPorId(id);
+        const resultado = await usuarioModel.buscarPorId(idUsuario);
 
         console.log(resultado);
 
