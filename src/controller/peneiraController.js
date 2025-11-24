@@ -20,14 +20,14 @@ async function cadastrar(req, res) {
 
 async function listar(req, res) {
     try {
-        const resultado = await peneiraModel.listar();
-
         const { q } = req.query;
         
         if (q) {
             const resultado = await peneiraModel.pesquisar(q);
             return res.status(200).json({ resultado });
         }
+
+        const resultado = await peneiraModel.listar();
 
         return res.status(200).json({ resultado });
         

@@ -96,7 +96,24 @@ async function filtrarPeneirasAbertasPorUf(uf) {
 
 async function pesquisar(q) {
     const instrucao = `
-        SELECT * FROM peneira WHERE titulo LIKE CONCAT('%', ?, '%') OR descricao LIKE CONCAT('%', ?, '%')
+        SELECT
+            p.id_peneira,
+            p.titulo,
+            p.descricao,
+            t.nome AS time,
+            c.nome AS categoria_de_base,
+            CONCAT(e.logradouro, ', ', e.numero,  ' - ', e.cidade, ' ', e.uf) AS local,
+            p.data_hora_realizacao AS data
+        FROM peneira p
+        JOIN time t
+            ON p.id_time = t.id_time
+        JOIN categoria_base c
+            ON p.id_categoria_base = c.id_categoria_base
+        JOIN endereco e
+            ON p.id_endereco = e.id_endereco
+        WHERE 
+            p.titulo LIKE CONCAT('%', ?, '%') OR 
+            p.descricao LIKE CONCAT('%', ?, '%')
     `;
 
     const parametro = [q, q];
