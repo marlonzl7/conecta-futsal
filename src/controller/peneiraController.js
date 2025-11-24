@@ -43,12 +43,12 @@ async function listarQuantidadePorFiltro(req, res) {
         const { cidade, uf } = req.query;
     
         if (cidade) {
-            const resultado = await peneiraModel.listarQuantidadePorCidade(cidade);
+            const resultado = await peneiraModel.listarQuantidadePorCidade();
             return res.status(200).json({ resultado });
         }
 
         if (uf) {
-            const resultado = await peneiraModel.listarQuantidadePorUf(uf);
+            const resultado = await peneiraModel.listarQuantidadePorUf();
             return res.status(200).json({ resultado });
         }
 

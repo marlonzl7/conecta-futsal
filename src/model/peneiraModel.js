@@ -10,37 +10,29 @@ async function cadastrar(
 
     const parametros = [titulo, descricao, dataInicioInscricao, dataFinalInscricao, dataHoraRealizacao, idTime, idEndereco, idCategoriaBase];
 
-    const resultado = await database.execute(instrucao, parametros);
-
-    return resultado;
+    return await database.execute(instrucao, parametros);
 }
 
 async function listar() {
     const instrucao = `SELECT * FROM vw_listar_peneiras`;
                 
-    const resultado = await database.execute(instrucao);
-
-    return resultado;
+    return await database.execute(instrucao);
 }
 
-async function listarQuantidadePorCidade(cidade) {
+async function listarQuantidadePorCidade() {
     const instrucao = `
         SELECT * FROM vw_listar_peneiras_por_cidade
     `;
 
-    const resultado = await database.execute(instrucao);
-
-    return resultado;
+    return await database.execute(instrucao);
 }
 
 async function listarQuantidadePorUf() {
     const instrucao = `
         SELECT * FROM vw_listar_peneiras_por_estado
     `;
-
-    const resultado = await database.execute(instrucao);
-
-    return resultado;
+                
+    return await database.execute(instrucao);
 }
 
 async function buscarPorIdPeneira(id) {
@@ -58,9 +50,7 @@ async function buscarPorIdPeneira(id) {
 
     const parametro  = [id];
 
-    const resultado = await database.execute(instrucao, parametro);
-
-    return resultado;
+    return await database.execute(instrucao, parametro);
 }
 
 async function filtrarPeneirasAbertasPorCidade(cidade) {
@@ -74,9 +64,7 @@ async function filtrarPeneirasAbertasPorCidade(cidade) {
 
     const parametro  = [cidade];
 
-    const resultado = await database.execute(instrucao, parametro);
-
-    return resultado;
+    return await database.execute(instrucao, parametro);
 }
 
 async function filtrarPeneirasAbertasPorUf(uf) {
@@ -89,9 +77,7 @@ async function filtrarPeneirasAbertasPorUf(uf) {
 
     const parametro = [uf];
 
-    const resultado = await database.execute(instrucao, parametro);
-
-    return resultado;
+    return await database.execute(instrucao, parametro);
 }
 
 async function pesquisar(q) {
@@ -118,9 +104,7 @@ async function pesquisar(q) {
 
     const parametro = [q, q];
 
-    const resultado = await database.execute(instrucao, parametro);
-
-    return resultado;
+    return await database.execute(instrucao, parametro);
 }
 
 module.exports = {
