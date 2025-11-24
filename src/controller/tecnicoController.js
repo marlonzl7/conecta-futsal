@@ -1,7 +1,6 @@
 var tecnicoModelModel = require("../model/tecnicoModel");
 
 async function listar(req, res) {
-
     try {
         const resultado = await tecnicoModel.listar();
 
@@ -13,22 +12,21 @@ async function listar(req, res) {
     }
 }
 
-async function listarPorId(req, res) {
-    try {
-        const { id_tecnico } = req.query;
+// async function buscarPorId(req, res) {
+//     try {
+//         const { idTecnico } = req.params;
 
-        const resultado = await tecnicoModel.buscarPorId(id_tecnico);
+//         const resultado = await tecnicoModel.buscarPorId(idTecnico);
 
-        return res.status(200).json({ message: "Técnico listado com sucesso", resultado });
+//         return res.status(200).json({ message: "Técnico listado com sucesso", resultado });
 
-    } catch (erro) {
-        console.error("Erro ao listar peneiras: ", erro);
+//     } catch (erro) {
+//         console.error("Erro ao listar peneiras: ", erro);
 
-        return res.status(500).json({ error: "Erro interno no servidor." });
-    }
-}
+//         return res.status(500).json({ error: "Erro interno no servidor." });
+//     }
+// }
 
 module.exports = {
-    listar,
-    listarPorId
+    listar
 }

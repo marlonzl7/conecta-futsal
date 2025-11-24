@@ -7,4 +7,8 @@ router.get("/listar", function(req, res) {
     tecnicoController.listar(req, res);
 })
 
+// router.get("/:idTecnico", function(req, res) {
+//     tecnicoController.buscarPorId(req, res);
+// })
+
 module.exports = router;
