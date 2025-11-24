@@ -26,11 +26,19 @@ async function autenticar(req, res) {
     try {
         const { email, senha } = req.body;
         const usuario = await usuarioModel.autenticar(email, senha);
-        
+        let tipoUsuario = "";
+
+        if (usuario.id_tecnico) {
+            tipoUsuario = "tecnico";
+        } else {
+            tipoUsuario = "jogador";
+        }
+
         res.status(200).json({
             idUsuario: usuario.id_usuario,
             nome: usuario.nome,
-            email: usuario.email
+            email: usuario.email,
+            tipoUsuario: tipoUsuario
         });
     } catch (erro) {
         console.error("Erro ao autenticar: ", erro);

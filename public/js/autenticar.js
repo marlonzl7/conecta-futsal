@@ -20,7 +20,10 @@ function autenticar() {
             sessionStorage.ID_USUARIO = json.idUsuario;
             sessionStorage.NOME = json.nome;
             sessionStorage.EMAIL = json.email;
-            
+            sessionStorage.TIPO_USUARIO = json.tipoUsuario;
+
+            console.log(json);
+
             alert("Login realizado com sucesso!");
 
             location.href="/dashboard/index.html";
