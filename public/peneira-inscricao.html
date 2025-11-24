@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title>Conecta Futsal - Peneira</title>
+
     <link rel="stylesheet" href="./style/index-home.css">
     <link rel="stylesheet" href="./style/buttons.css">
-
+    <link rel="stylesheet" href="./style/peneira-inscricao.css">
     <script src="./js/validarSessaoHome.js"></script>
     <script src="./js/redirecionamentos.js"></script>
+    <script src="./js/peneira-inscricao.js"></script>
     <script src="./js/peneiras.js"></script>
 </head>
-<body onload="carregarPeneiras(), validarSessaoHome()">
+<body onload="carregarPeneira(), validarSessaoHome()">
     <main>
         <header class="header">
             <div class="cabecalho">
-                <a href="./peneiras.html">
+                <a href="peneiras.html">
                     <img src="./assets/images/logo.svg" alt="Logo: Conecta Futsal">
                 </a>
-                
+
                 <div class="pesquisa">
-                    <input type="search" name="pesquisa" id="pesquisa" placeholder="Busque por peneiras..." oninput="pesquisarPeneiras(pesquisa.value)">
+                    <input type="search" name="pesquisa" id="pesquisa" placeholder="Busque por peneiras..." oninput="pesquisarPeneiras()">
                 </div>
 
                 <div class="buttons" id="buttonsHome">
-                    <button class="btn btn-principal home-btn" id="home-login" onclick="redirecionarParaLogin()">Login</button>
-                    <button class="btn btn-principal home-btn" id="home-cadastro" onclick="redirecionarParaCadastro()">Cadastre-se</button>
+                    <button class="btn btn-principal home-btn" onclick="redirecionarParaLogin()">Login</button>
+                    <button class="btn btn-principal home-btn" onclick="redirecionarParaCadastro()">Cadastre-se</button>
                 </div>
 
                 <a href="./dashboard/index.html" class="usuario-logado" id="usuarioLogado" style="display:none;">
@@ -37,6 +38,7 @@
                     <img src="./assets/icons/user-icon.svg" alt="Ícone de usuário" class="usuario-icon">
                 </a>
             </div>
+
             <div class="categorias">
                 <ul class="categorias-lista">
                     <li><a href="peneiras.html">Peneiras</a></li>
@@ -48,7 +50,19 @@
         </header>
 
         <section class="secao-principal" id="secao-principal">
-            
+            <h2 id="titulo" class="item-titulo"></h2>
+
+            <div class="item-detalhes">
+                <span><strong>Status:</strong> <span id="status"></span></span>
+                <span><strong>Categoria:</strong> <span id="categoria"></span></span>
+                <span><strong>Data de Realização:</strong> <span id="data-realizacao"></span></span>
+                <span><strong>Horário:</strong> <span id="horario"></span></span>
+                <span><strong>Endereço:</strong> <span id="endereco"></span></span>
+                <span><strong>Início Inscrição:</strong> <span id="data-inicio-inscricao"></span></span>
+                <span><strong>Fim Inscrição:</strong> <span id="data-final-inscricao"></span></span>
+            </div>
+
+            <div class="button" id="button"></div>
         </section>
 
         <footer>

@@ -1,26 +1,28 @@
 var database = require("../database/config");
-const { param } = require("../routes");
 
 async function cadastrar(idUsuario, idPeneira) {
+    if (!idUsuario || !idPeneira) {
+        throw "PARAMETROS_INVALIDOS";
+    }
+
+    const resultado = await obterJogadorPorIdUsuario(idUsuario);
+
+    if (!resultado || resultado.length === 0) {
+        throw "TIPO_USUARIO_DIFERENTE_DE_JOGADOR";
+    }
+
+    const idJogador = resultado[0].id_jogador;
+    
+    const inscrito = await verificarInscricao(idJogador, idPeneira);
+
+    if (inscrito.length > 0) {
+        throw "JOGADOR_INSCRITO";
+    }
+
     const instrucao = `
         INSERT INTO inscricao (id_peneira, id_jogador) VALUES (?, ?)
     `;
 
-    const resultado = await obterJogadorPorIdUsuario(idUsuario);
-
-    console.log(resultado);
-
-    const idJogador = resultado[0].id_jogador;
-
-    if (!idJogador) {
-        throw "TIPO_USUARIO_DIFERENTE_DE_JOGADOR";
-    }
-
-    const inscrito = verificarInscricao(idJogador, idPeneira)
-
-    if (inscrito) {
-        throw "JOGADOR_INSCRITO";
-    }
 
     const parametros = [idPeneira, idJogador];
 
@@ -39,10 +41,13 @@ async function obterJogadorPorIdUsuario(idUsuario) {
 
 async function verificarInscricao(idJogador, idPeneira) {
     const instrucao = `
-        SELECT 1 FROM inscricao WHERE id_usuario = ? AND id_peneira = ?
+        SELECT 1
+        FROM inscricao
+        WHERE id_peneira = ? AND id_jogador = ?
+        LIMIT 1
     `;
 
-    const parametros = [idJogador, idPeneira];
+    const parametros = [idPeneira, idJogador];
 
     return await database.execute(instrucao, parametros);
 }

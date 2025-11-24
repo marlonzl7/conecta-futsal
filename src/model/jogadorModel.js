@@ -23,7 +23,9 @@ async function buscarPorId(id_jogador) {
         SELECT * FROM jogador WHERE id_jogador = ?
     `;
 
-    const resultado = await database.execute(instrucao);
+    const parametro = [id_jogador];
+
+    const resultado = await database.execute(instrucao, parametro);
 
     return resultado;
 }

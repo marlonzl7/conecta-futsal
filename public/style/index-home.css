@@ -117,6 +117,15 @@ body {
     color: #333;
 }
 
+.buttons {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+
 .btn-inscrever {
     margin-top: auto; 
     align-self: stretch;
@@ -144,4 +153,16 @@ body {
 .usuario-dados #emailUsuarioLogado {
     font-size: 0.85rem;
     color: #555;
+}
+
+.negrito {
+    font-weight: 600;
+    display: inline;
+}
+
+.local, 
+.data {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
 }

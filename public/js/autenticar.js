@@ -19,8 +19,11 @@ function autenticar() {
         resposta.json().then(json => {                
             sessionStorage.ID_USUARIO = json.idUsuario;
             sessionStorage.NOME = json.nome;
+            sessionStorage.EMAIL = json.email;
+            
+            alert("Login realizado com sucesso!");
 
-            location.href="index.html";
+            location.href="/dashboard/index.html";
         })
     })
     .catch (function (erro) {
