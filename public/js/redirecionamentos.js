@@ -1,7 +1,11 @@
 function redirecionarParaLogin() {
-    location.href="/login.html";
+    window.location.href="/login.html";
 }
 
 function redirecionarParaCadastro() {
-    location.href="/cadastro.html";
+    window.location.href="/cadastro.html";
+}
+
+function redirecionarParaPeneira(id) {
+    window.location.href=`/peneira-inscricao.html?id=${id}`;
 }

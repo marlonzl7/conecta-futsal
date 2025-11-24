@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="./style/index-home.css">
+    <link rel="stylesheet" href="./style/buttons.css">
+
+    <script src="./js/validarSessaoHome.js"></script>
+    <script src="./js/redirecionamentos.js"></script>
+    <script src="./js/peneiras.js"></script>
+</head>
+<body onload="obterPeneiras(), validarSessaoHome()">
+    <main>
+        <header class="header">
+            <div class="cabecalho">
+                <a href="">
+                    <img src="./assets/images/logo.svg" alt="Logo: Conecta Futsal">
+                </a>
+                
+                <div class="pesquisa">
+                    <input type="search" name="pesquisa" id="pesquisa" placeholder="Busque por peneiras..." oninput="pesquisarPeneiras(pesquisa.value)">
+                </div>
+
+                <div class="buttons" id="buttonsHome">
+                    <button class="btn btn-principal home-btn" id="home-login" onclick="redirecionarParaLogin()">Login</button>
+                    <button class="btn btn-principal home-btn" id="home-cadastro" onclick="redirecionarParaCadastro()">Cadastre-se</button>
+                </div>
+
+                <a href="./dashboard/index.html" class="usuario-logado" id="usuarioLogado" style="display:none;">
+                    <div class="usuario-dados">
+                        <span id="nomeUsuarioLogado"></span>
+                        <span id="emailUsuarioLogado"></span>
+                    </div>
+                    <img src="./assets/icons/user-icon.svg" alt="Ícone de usuário" class="usuario-icon">
+                </a>
+            </div>
+            <div class="categorias">
+                <ul class="categorias-lista">
+                    <li><a href="peneiras.html">Peneiras</a></li>
+                    <li><a href="times.html">Times</a></li>
+                    <li><a href="jogadores.html">Jogadores</a></li>
+                    <li><a href="tecnicos.html">Técnicos</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section class="secao-principal" id="secao-principal">
+            
+        </section>
+
+        <footer>
+            
+        </footer>
+    </main>
+</body>
+</html>

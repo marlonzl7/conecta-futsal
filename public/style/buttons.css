@@ -19,3 +19,31 @@
     border: 1px solid #0460D9;
     color: #0460D9;
 }
+
+.btn-inscrever {
+    background-color: #0460D9;
+    padding: 0.5rem 0rem;
+    width: 50%;
+    cursor: pointer;
+    border: 1px solid transparent;
+    color: #FFFFFF;
+    align-self: flex-start;
+}
+
+.home-btn {
+    width: 150px;
+    padding: 0.75rem 0rem;
+}
+
+.home-btn:hover {
+    background-color: #FFFFFF;
+    border: 1px solid #0460D9;
+    color: #0460D9;
+    transition: 0.2s;
+}
+
+#home-login {
+    background-color: #FFFFFF;
+    border: 1px solid #0460D9;
+    color: #0460D9;
+}
