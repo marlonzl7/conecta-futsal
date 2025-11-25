@@ -46,7 +46,20 @@ async function listar(req, res) {
     }
 }
 
+async function obterTimePorCidadePorIdUsuario(req, res) {
+    try {
+        const { idUsuario } = req.params;
+
+        const resultado = await timeModel.quantidadeTimePorCidadePorUsuario(idUsuario);
+
+        return res.status(200).json({ resultado });
+    } catch (erro) {
+        console.error("Erro ao buscar times na cidade do usuário: ", erro);
+    }
+}
+
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    obterTimePorCidadePorIdUsuario
 }

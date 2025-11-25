@@ -62,10 +62,34 @@ async function pesquisar(q) {
     return resultado;
 }
 
+async function quantidadeTimePorCidadePorUsuario(idUsuario) {
+    const enderecoModel = require("../model/enderecoModel");
+    const cidade = await enderecoModel.obterCidadePorIdUsuario(idUsuario);
+
+    if (!cidade) {
+        throw "ENDERECO_NAO_REGISTRADO";
+    }
+
+    const instrucao = `
+        SELECT
+            COUNT(*) AS quantidade
+        FROM time t
+        JOIN endereco e
+            ON t.id_endereco = e.id_endereco
+        WHERE
+            e.cidade = ?
+    `;
+
+    const parametro = [cidade];
+
+    return await database.execute(instrucao, parametro);
+}
+
 module.exports = {
     cadastrar,
     listar,
     filtrarPorCidade,
     filtrarPorUf,
+    quantidadeTimePorCidadePorUsuario,
     pesquisar
 }
