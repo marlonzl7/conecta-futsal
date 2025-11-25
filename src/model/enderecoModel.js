@@ -53,8 +53,23 @@ async function buscarPorIdUsuario(idUsuario) {
     return resultado;
 }
 
+async function obterCidadePorIdUsuario(idUsuario) {
+    const instrucao = `
+        SELECT e.cidade 
+        FROM endereco e 
+        JOIN usuario u 
+            ON e.id_endereco = u.id_endereco 
+        WHERE u.id_usuario = ?
+    `;
+
+    const parametro = [idUsuario];
+
+    return await database.execute(instrucao, parametro);
+}
+
 module.exports = {
     cadastrar,
     buscarPorIdEndereco,
-    buscarPorIdUsuario
+    buscarPorIdUsuario,
+    obterCidadePorIdUsuario
 }
