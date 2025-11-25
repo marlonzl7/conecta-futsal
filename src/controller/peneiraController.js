@@ -105,10 +105,25 @@ async function buscarPorId(req, res) {
     }       
 }
 
+async function obterQuantidadePeneirasPorCidadePorIdUsuario(req, res) {
+    try {
+        const { idUsuario } = req.params;
+
+        const resultado = await peneiraModel.quantidadePeneirasPorCidadePorIdUsuario(idUsuario);
+
+        return res.status(200).json({ resultado });
+    } catch (erro) {
+        console.error("Erro ao buscar peneiras na cidade do usuário: ", erro);
+
+        res.status(500).json({ error: "Erro interno no servidor." });
+    }
+}
+
 module.exports = {
     cadastrar,
     listar,
     listarQuantidadePorFiltro,
     buscarPorId,
+    obterQuantidadePeneirasPorCidadePorIdUsuario,
     filtrar
 }

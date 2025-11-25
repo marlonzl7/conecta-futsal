@@ -15,6 +15,10 @@ router.get("/quantidade", function(req, res) {
     peneiraController.listarQuantidadePorFiltro(req, res);
 })
 
+router.get("/quantidade/:idUsuario", function(req, res) {
+    peneiraController.obterQuantidadePeneirasPorCidadePorIdUsuario(req, res);
+})
+
 router.get("/:idPeneira", function (req, res) {
     peneiraController.buscarPorId(req, res);
 })

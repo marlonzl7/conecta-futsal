@@ -107,6 +107,29 @@ async function pesquisar(q) {
     return await database.execute(instrucao, parametro);
 }
 
+async function quantidadePeneirasPorCidadePorIdUsuario(idUsuario) {
+    const enderecoModel = require("../model/enderecoModel");
+    const cidade = await enderecoModel.obterCidadePorIdUsuario(idUsuario);
+
+    if (!cidade) {
+        throw "ENDERECO_NAO_REGISTRADO";
+    }
+
+    const instrucao = `
+        SELECT
+            COUNT(*) AS quantidade
+        FROM peneira p
+        JOIN endereco e
+            ON p.id_endereco = e.id_endereco
+        WHERE 
+            e.cidade = ? AND p.status = TRUE;
+    `;
+
+    const parametro = [cidade];
+
+    return await database.execute(instrucao, parametro);
+}
+
 module.exports = {
     cadastrar,
     listar,
@@ -115,5 +138,6 @@ module.exports = {
     listarQuantidadePorUf,
     filtrarPeneirasAbertasPorCidade,
     filtrarPeneirasAbertasPorUf,
+    quantidadePeneirasPorCidadePorIdUsuario,
     pesquisar
 }
