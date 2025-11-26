@@ -1,5 +1,3 @@
-// const { application } = require("express");
-
 async function carregarPeneira() {
     try {
         const params = new URLSearchParams(window.location.search);
@@ -52,7 +50,7 @@ async function inscreverUsuario(idPeneira, idUsuario) {
 
         resposta.json().then(json => {
             alert("Inscrição realizada com sucesso!");
-            window.location.href="./../peneiras.html";
+            window.location.href="./index.html";
         })
     })
     .catch (function (erro) {
