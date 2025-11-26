@@ -1,6 +1,6 @@
 async function carregarPeneiras() {
     try {
-        const resposta = await fetch("/peneiras/listar");
+        const resposta = await fetch("/peneiras");
         const dados = await resposta.json();
         const peneiras = dados.resultado;
 
@@ -30,7 +30,7 @@ async function carregarPeneiras() {
 }
 
 async function pesquisarPeneiras(q) {    
-    const resultado = await fetch(`/peneiras/listar?q=${q}`);
+    const resultado = await fetch(`/peneiras?q=${q}`);
     const dados = await resultado.json();
     const peneiras = dados.resultado;
 
