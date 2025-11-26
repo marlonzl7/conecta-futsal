@@ -55,7 +55,7 @@ async function autenticar(email, senha) {
         FROM usuario u
             LEFT JOIN jogador j ON j.id_usuario = u.id_usuario
             LEFT JOIN tecnico t ON t.id_usuario = u.id_usuario
-                WHERE email = ?
+        WHERE email = ?
     `;
 
     const parametro = [email];

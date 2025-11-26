@@ -38,7 +38,9 @@ async function autenticar(req, res) {
             idUsuario: usuario.id_usuario,
             nome: usuario.nome,
             email: usuario.email,
-            tipoUsuario: tipoUsuario
+            tipoUsuario: tipoUsuario,
+            idTecnico: usuario.id_tecnico,
+            idJogador: usuario.id_jogador
         });
     } catch (erro) {
         console.error("Erro ao autenticar: ", erro);
