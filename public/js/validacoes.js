@@ -64,6 +64,7 @@ function validarEmail(input) {
     const erroSpan = document.getElementById("emailInvalido");
     const divErro = erroSpan.parentElement;
     let temArroba = false;
+    // let temCaractereAntesDoArroba = false;
     let temPonto = false;
     let emailValido = false;
 
@@ -75,6 +76,12 @@ function validarEmail(input) {
                 if (input[j] === ".") {
                     temPonto = true;
                     emailValido = true;
+
+                    // if (input[j - 1] != "@") {
+                    //     console.log[j - 1];
+                    //     temCaractereAntesDoArroba = true;
+                    // }
+
                     break;
                 }
             }
@@ -82,22 +89,26 @@ function validarEmail(input) {
     }
 
     if (!emailValido) {
-        let msg = "Email inválido: ";
+        let msg = "Email inválido:<br>";
 
         if (!temArroba) {
-            msg += "É necessário ter '@'; ";
-        }
-        
-        if (!temPonto) {
-            msg += "É necessário ter '.' após o '@'; ";
+            msg += "É necessário ter '@';<br>";
         }
 
-        erroSpan.textContent = msg;
+        // if (!temCaractereAntesDoArroba) {
+        //     msg += "É necessário ter caracteres antes do '.' (Ex: @gmail)<br>"
+        // }
+
+        if (!temPonto) {
+            msg += "É necessário ter '.' após o '@';";
+        }
+
+        erroSpan.innerHTML = msg;
         divErro.classList.add("active");
 
     } else {
         divErro.classList.remove("active");
-        erroSpan.textContent = "";
+        erroSpan.innerHTML = "";
     }
 
     return emailValido;
@@ -164,6 +175,141 @@ function validarTipoUsuario(input) {
     }
 
     erroSpan.textContent = "O tipo de usuário só pode ser [jogador ou técnico]";
+    divErro.classList.add("active");
+
+    return false;
+}
+
+function validarCep(input) {
+    const erroSpan = document.getElementById("cepInvalido");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!(codigo_ascii >= 48 && codigo_ascii <= 57)) {
+            let msg = "O CEP só deve conter números";
+            erroSpan.textContent = msg;
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function validarLogradouro(input) {
+    const erroSpan = document.getElementById("sobrenomeInvalido");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!((codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii === 32))) {
+            erroSpan.textContent = "O Logradouro só deve conter letras";
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
+    return true;
+}
+
+function validarNumero(input) {
+    const erroSpan = document.getElementById("numeroInvalido");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!(codigo_ascii >= 48 && codigo_ascii <= 57)) {
+            let msg = "O Número não pode conter outros caracteres";
+            erroSpan.textContent = msg;
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function validarComplemento(input) {
+    const erroSpan = document.getElementById("complementoInvalido");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!((codigo_ascii >= 48 && codigo_ascii <= 57) || (codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii == 32))) {
+            erroSpan.textContent = "O complemento só pode conter números ou letras";
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
+    return true;
+}
+
+function validarBairro(input) {
+    const erroSpan = document.getElementById("bairroInvalido");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!((codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii === 32))) {
+            erroSpan.textContent = "O bairro só deve conter letras";
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
+    return true;
+}
+
+function validarCidade(input) {
+    const erroSpan = document.getElementById("cidadeInvalida");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!((codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii === 32))) {
+            erroSpan.textContent = "A cidade só deve conter letras";
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
+    return true;
+}
+
+async function validarUf(input) {
+    const ufsValidas = await buscarUfsValidas();
+    const erroSpan = document.getElementById("ufInvalido");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < ufsValidas.length; i++) {
+        if (input === ufsValidas[i]) {
+            divErro.classList.remove("active");
+            erroSpan.textContent = "";
+            return true;
+        }
+    }
+
+    erroSpan.textContent = "Estado inválido";
     divErro.classList.add("active");
 
     return false;
