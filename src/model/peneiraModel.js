@@ -91,41 +91,19 @@ async function pesquisar(q) {
             CONCAT(e.logradouro, ', ', e.numero,  ' - ', e.cidade, ' ', e.uf) AS local,
             p.data_hora_realizacao AS data
         FROM peneira p
-        JOIN time t
-            ON p.id_time = t.id_time
-        JOIN categoria_base c
-            ON p.id_categoria_base = c.id_categoria_base
-        JOIN endereco e
-            ON p.id_endereco = e.id_endereco
+        JOIN time t ON p.id_time = t.id_time
+        JOIN categoria_base c ON p.id_categoria_base = c.id_categoria_base
+        JOIN endereco e ON p.id_endereco = e.id_endereco
         WHERE 
             p.titulo LIKE CONCAT('%', ?, '%') OR 
-            p.descricao LIKE CONCAT('%', ?, '%')
+            p.descricao LIKE CONCAT('%', ?, '%') OR
+            t.nome LIKE CONCAT('%', ?, '%') OR
+            c.nome LIKE CONCAT('%', ?, '%') OR
+            e.cidade LIKE CONCAT('%', ?, '%') OR
+            e.uf LIKE CONCAT('%', ?, '%')
     `;
 
-    const parametro = [q, q];
-
-    return await database.execute(instrucao, parametro);
-}
-
-async function quantidadePeneirasPorCidadePorIdUsuario(idUsuario) {
-    const enderecoModel = require("../model/enderecoModel");
-    const cidade = await enderecoModel.obterCidadePorIdUsuario(idUsuario);
-
-    if (!cidade) {
-        throw "ENDERECO_NAO_REGISTRADO";
-    }
-
-    const instrucao = `
-        SELECT
-            COUNT(*) AS quantidade
-        FROM peneira p
-        JOIN endereco e
-            ON p.id_endereco = e.id_endereco
-        WHERE 
-            e.cidade = ? AND p.status = TRUE;
-    `;
-
-    const parametro = [cidade];
+    const parametro = [q, q, q, q, q, q];
 
     return await database.execute(instrucao, parametro);
 }
@@ -138,6 +116,5 @@ module.exports = {
     listarQuantidadePorUf,
     filtrarPeneirasAbertasPorCidade,
     filtrarPeneirasAbertasPorUf,
-    quantidadePeneirasPorCidadePorIdUsuario,
     pesquisar
 }
