@@ -23,7 +23,7 @@ var enderecoRouter = require("./src/routes/enderecos");
 var timeRouter = require("./src/routes/times");
 var peneiraRouter = require("./src/routes/peneiras");
 var categoriaBaseRouter = require("./src/routes/categoriasBase");
-var dashboardRouter = require("./src/routes/dashboard");
+var dashboardRouter = require("./src/routes/dashboards");
 var inscricaoRouter = require("./src/routes/inscricoes");
 
 app.use(express.json());
@@ -40,7 +40,7 @@ app.use("/enderecos", enderecoRouter);
 app.use("/times", timeRouter);
 app.use("/peneiras", peneiraRouter);
 app.use("/categorias-de-base", categoriaBaseRouter);
-app.use("/dashboard", dashboardRouter);
+app.use("/dashboards", dashboardRouter);
 app.use("/inscricoes", inscricaoRouter);
 
 app.listen(PORTA_APP, function () {
