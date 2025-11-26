@@ -3,20 +3,16 @@ var router = express.Router();
 
 var peneiraController = require("../controller/peneiraController");
 
-router.post("/cadastrar", function (req, res) {
+router.post("/", function (req, res) {
     peneiraController.cadastrar(req, res);
 })
 
-router.get("/listar", function (req, res) {
+router.get("/", function (req, res) {
     peneiraController.listar(req, res);
 })
 
 router.get("/quantidade", function(req, res) {
     peneiraController.listarQuantidadePorFiltro(req, res);
-})
-
-router.get("/quantidade/:idUsuario", function(req, res) {
-    peneiraController.obterQuantidadePeneirasPorCidadePorIdUsuario(req, res);
 })
 
 router.get("/:idPeneira", function (req, res) {
