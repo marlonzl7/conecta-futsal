@@ -12,9 +12,9 @@ INSERT INTO endereco (cep, logradouro, numero, complemento, bairro, cidade, uf) 
     ('08780210', 'Avenida Cândido Xavier de Almeida e Souza', '110', null, 'Centro Cívico', 'Mogi das Cruzes', 'SP');
 
 INSERT INTO usuario (nome, sobrenome, data_nascimento, telefone, email, senha, id_endereco) VALUES
-    ('Marlon', 'Souza', '2000-01-01', '11979842364', 'marlon@email.com', '860cbe569371117d968ef578af52a375:057a0d57bf494e4ad396e90faf0abb65db61c1e6a2392d0cdb38adc1735f96194613bc450e2bb2c5f8e68a799638e9d9b8d30b8e4db11fcf6842eb6042023266', 1),
-    ('Ivan', 'Machado', '2000-10-29', '11978012310', 'ivan@email.com', '2af7de0ed20af1174516f2a1c42f1d8b:088e8dfd94c44e573e9f975f6e59988a4a92cf3fc0f713826a9cf623159ea253245d3ac9ec98a9cd6fca64a200c59ad2adae9560238a54b9c084ebeb1cdf3670', 2),
-    ('Sergio', 'Rodrigues', '2000-04-19', '11978012301', 'sergio@email.com', '96aa070eab81cb6138d28a1c370a956f:1860f74af7890a99775076c138b4bfa0c7a994801988713fc492d2e3ead75ee18a804f87c9ed668674587f36510847e1e69bf2c893f8ad501023e92a9fff7fa0', 3),
+    ('Marlon', 'Souza', '2000-01-01', '11979842364', 'marlon@email.com', '860cbe569371117d968ef578af52a375:057a0d57bf494e4ad396e90faf0abb65db61c1e6a2392d0cdb38adc1735f96194613bc450e2bb2c5f8e68a799638e9d9b8d30b8e4db11fcf6842eb6042023266', 6),
+    ('Ivan', 'Machado', '2000-10-29', '11978012310', 'ivan@email.com', '2af7de0ed20af1174516f2a1c42f1d8b:088e8dfd94c44e573e9f975f6e59988a4a92cf3fc0f713826a9cf623159ea253245d3ac9ec98a9cd6fca64a200c59ad2adae9560238a54b9c084ebeb1cdf3670', 8),
+    ('Sergio', 'Rodrigues', '2000-04-19', '11978012301', 'sergio@email.com', '96aa070eab81cb6138d28a1c370a956f:1860f74af7890a99775076c138b4bfa0c7a994801988713fc492d2e3ead75ee18a804f87c9ed668674587f36510847e1e69bf2c893f8ad501023e92a9fff7fa0', 9),
     ('Claudia', 'Sanchez', '2000-02-15', '11972215501', 'claudia@email.com', '08a3b836414ef518bee5c09e895ca8df:4b456735d2d0a07a392c8149bd882a79496fe7f9ba43256159e36ab5b11f771399f74bfafff1e079201c1c7a6672a204ee7506fdfdf8fbebb90e20151e4606e2', 4),
     ('José', 'Silva', '1976-01-20', '11972044761', 'jose@email.com', '2d43653a52d93e862003f7c7c84d4fdf:992ac47fd966bd412ee77ce073c5802dc5b9c45e3d0d8f56328eb8bd47b9275eaa0e5c7257143e57ddf885f027620f0e00a6c55d3644f73f491edbccd41f1dbe', null),
     ('Maria', 'Santos', '1982-07-22', '1199814761', 'maria@email.com', '50de8a303b228a06454edb1c49e03411:5e716fd01f747c70d655303e8d08d13577ecee468f3f2de764c5fe9a2404346be0d7e2e81800d0a4f8f01fb56c75b05f03a848ae8e95f1b7e14c898f39292415', null),
