@@ -26,7 +26,13 @@ function autenticar() {
 
             alert("Login realizado com sucesso!");
 
-            location.href="/dashboard/index.html";
+            if (sessionStorage.TIPO_USUARIO == 'tecnico') {
+                sessionStorage.ID_TECNICO = json.idTecnico;
+                location.href="/dashboard/tecnico/index.html";
+            } else if (sessionStorage.TIPO_USUARIO == 'jogador') {
+                sessionStorage.ID_JOGADOR = json.idJogador;
+                location.href="/dashboard/jogador/index.html";
+            }
         })
     })
     .catch (function (erro) {

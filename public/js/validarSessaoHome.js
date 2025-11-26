@@ -11,6 +11,17 @@ function validarSessaoHome() {
 
         buttonsHome.style.display = "none";
         usuarioLogado.style.display = "flex";
+
+        const tipo = sessionStorage.TIPO_USUARIO;
+
+        if (tipo === "jogador") {
+            usuarioLogado.href = "./dashboard/jogador/index.html";
+        } else if (tipo === "tecnico") {
+            usuarioLogado.href = "./dashboard/tecnico/index.html";
+        } else {
+            usuarioLogado.href = "#";
+        }
+
     } else {
         buttonsHome.style.display = "flex";
         usuarioLogado.style.display = "none";
