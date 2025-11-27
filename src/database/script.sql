@@ -88,38 +88,37 @@ CREATE TABLE inscricao (
 	CONSTRAINT fk_inscricao_peneira FOREIGN KEY (id_peneira) REFERENCES peneira (id_peneira)
 );
 
-CREATE VIEW vw_listar_peneiras AS
+CREATE VIEW vw_peneiras_detalhadas AS
     SELECT 
         p.id_peneira,
         t.nome AS time,
         c.nome AS categoria_de_base,
         CONCAT(e.logradouro, ', ', e.numero, ' - ', e.cidade, ' ', e.uf) AS local,
-        p.data_hora_realizacao AS data
+        YEAR(p.data_hora_realizacao) AS ano,
+        MONTH(p.data_hora_realizacao) AS mes,
+        DAY(p.data_hora_realizacao) AS dia,
+        TIME(p.data_hora_realizacao) AS horario
     FROM peneira p 
-    JOIN endereco e 
-        ON p.id_endereco = e.id_endereco 
-    JOIN time t 
-        ON p.id_time = t.id_time
-    JOIN categoria_base c
-        ON p.id_categoria_base = c.id_categoria_base;
+    JOIN endereco e ON p.id_endereco = e.id_endereco 
+    JOIN time t ON p.id_time = t.id_time
+    JOIN categoria_base c ON p.id_categoria_base = c.id_categoria_base;
 
-CREATE VIEW vw_listar_peneiras_por_cidade AS
+CREATE VIEW vw_peneiras_por_cidade AS
     SELECT
         CONCAT(e.cidade, ' - ', e.uf) AS cidade,
         COUNT(*) AS quantidade
     FROM peneira p
-    JOIN endereco e
-        ON p.id_endereco = e.id_endereco
+    JOIN endereco e ON p.id_endereco = e.id_endereco
     GROUP BY
         e.cidade,
         e.uf;
 
-CREATE VIEW vw_listar_peneiras_por_estado AS
+CREATE VIEW vw_peneiras_por_estado AS
     SELECT
         e.uf,
+		p.data_hora_realizacao AS data,
         COUNT(*) AS quantidade
     FROM peneira p
-    JOIN endereco e
-        ON p.id_endereco = e.id_endereco
+    JOIN endereco e ON p.id_endereco = e.id_endereco
     GROUP BY
-        e.uf;
+        e.uf, p.data_hora_realizacao;
