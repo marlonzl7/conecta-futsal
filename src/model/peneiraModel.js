@@ -14,14 +14,14 @@ async function cadastrar(
 }
 
 async function listar() {
-    const instrucao = `SELECT * FROM vw_listar_peneiras`;
+    const instrucao = `SELECT * FROM vw_peneiras_detalhadas`;
                 
     return await database.execute(instrucao);
 }
 
 async function listarQuantidadePorCidade() {
     const instrucao = `
-        SELECT * FROM vw_listar_peneiras_por_cidade
+        SELECT * FROM vw_peneiras_por_cidade
     `;
 
     return await database.execute(instrucao);
@@ -29,7 +29,7 @@ async function listarQuantidadePorCidade() {
 
 async function listarQuantidadePorUf() {
     const instrucao = `
-        SELECT * FROM vw_listar_peneiras_por_estado
+        SELECT * FROM vw_peneiras_por_estado
     `;
                 
     return await database.execute(instrucao);
@@ -89,7 +89,10 @@ async function pesquisar(q) {
             t.nome AS time,
             c.nome AS categoria_de_base,
             CONCAT(e.logradouro, ', ', e.numero,  ' - ', e.cidade, ' ', e.uf) AS local,
-            p.data_hora_realizacao AS data
+            YEAR(p.data_hora_realizacao) AS ano,
+            MONTH(p.data_hora_realizacao) AS mes,
+            DAY(p.data_hora_realizacao) AS dia,
+            TIME(p.data_hora_realizacao) AS horario
         FROM peneira p
         JOIN time t ON p.id_time = t.id_time
         JOIN categoria_base c ON p.id_categoria_base = c.id_categoria_base
