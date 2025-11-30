@@ -10,28 +10,58 @@ async function cadastrar(id_usuario) {
 
 async function listar() {
     const instrucao = `
-        SELECT * FROM jogador;
+        SELECT
+            j.id_jogador,
+            CONCAT(u.nome, ' ', u.sobrenome) AS nome_completo,
+            j.posicao,
+            CONCAT(e.cidade, ' - ', e.uf) AS cidade
+        FROM jogador j
+        JOIN usuario u ON j.id_usuario = u.id_usuario
+        JOIN endereco e ON u.id_endereco = e.id_endereco
     `;
 
-    const resultado = await database.execute(instrucao);
-
-    return resultado;
+    return await database.execute(instrucao);
 }
 
 async function buscarPorId(id_jogador) {
     const instrucao = `
-        SELECT * FROM jogador WHERE id_jogador = ?
+        SELECT * 
+        FROM jogador j
+        JOIN usuario u ON j.id_usuario = u.id_usuario
+        JOIN endereco e ON u.id_endereco = e.id_endereco
+        WHERE id_jogador = ?
     `;
 
     const parametro = [id_jogador];
 
-    const resultado = await database.execute(instrucao, parametro);
+    return await database.execute(instrucao, parametro);
+}
 
-    return resultado;
+async function pesquisar(q) {
+    const instrucao = `
+        SELECT
+            j.id_jogador,
+            CONCAT(u.nome, ' ', u.sobrenome) AS nome_completo,
+            j.posicao,
+            CONCAT(e.cidade, ' - ', e.uf) AS cidade
+        FROM jogador j
+        JOIN usuario u ON j.id_usuario = u.id_usuario
+        JOIN endereco e ON u.id_endereco = e.id_endereco
+        WHERE 
+            u.nome LIKE CONCAT('%', ?, '%') OR 
+            u.sobrenome LIKE CONCAT('%', ?, '%') OR
+            j.posicao LIKE CONCAT('%', ?, '%') OR
+            e.cidade LIKE CONCAT('%', ?, '%')
+    `;
+
+    const parametro = [q, q, q, q];
+    
+    return await database.execute(instrucao, parametro);
 }
 
 module.exports = {
     cadastrar,
     listar,
+    pesquisar,
     buscarPorId
 }
