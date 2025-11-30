@@ -16,28 +16,14 @@ async function cadastrar(req, res) {
 
 async function listar(req, res) {
     try {
-        const { cidade, uf, q } = req.query;
-
-        if (cidade) {
-            const resultado = await timeModel.filtrarPorCidade(cidade);
-
-            return res.status(200).json({ resultado });
-        }
-
-        if (uf) {
-            const resultado = await timeModel.filtrarPorUf(uf);
-
-            return res.status(200).json({ resultado });
-        }
+        const { q } = req.query;
 
         if (q) {
             const resultado = await timeModel.pesquisar(q);
-
             return res.status(200).json({ resultado });
         }
 
         const resultado = await timeModel.listar();
-
         return res.status(200).json({ resultado });
     } catch (erro) {
         console.error("Erro ao listar times: ", erro);

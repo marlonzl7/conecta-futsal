@@ -7,7 +7,7 @@ router.post("/cadastrar", function(req, res) {
     timeController.cadastrar(req, res);
 })
 
-router.get("/listar", function(req, res) {
+router.get("/", function(req, res) {
     timeController.listar(req, res);
 })
 

@@ -13,63 +13,66 @@ async function cadastrar(nome, descricao, idTecnico, idEndereco) {
     return resultado;
 }
 
-async function listar(req, res) {
-    const instrucao = `SELECT * FROM time`;
-
-    const resultado = await database.execute(instrucao);
-
-    return resultado;
-}
-
-async function filtrarPorCidade(cidade) {
+async function listar() {
     const instrucao = `
-        SELECT * FROM time t JOIN endereco e ON t.id_endereco = e.id_endereco WHERE cidade LIKE CONCAT('%', ?, '%')
+        SELECT 
+            t.nome,
+            t.descricao,
+            CONCAT(e.cidade, ' ', e.uf) AS local
+        FROM time t
+        JOIN endereco e ON t.id_endereco = e.id_endereco
     `;
 
-    const parametro = [cidade];
-
-    const resultado = await database.execute(instrucao, parametro);
-
-    return resultado;
-}
-
-async function filtrarPorUf(uf) {
-    const instrucao = `
-        SELECT * FROM time t JOIN endereco e ON t.id_endereco = e.id_endereco WHERE uf = ?
-    `;
-
-    const parametro = [uf];
-
-    console.log(uf);
-    console.log(parametro);
-
-    const resultado = await database.execute(instrucao, parametro);
-
-    console.log(resultado);
-
-    return resultado;
+    return await database.execute(instrucao);
 }
 
 async function pesquisar(q) {
     const instrucao = `
-        SELECT * 
-        FROM time 
+        SELECT
+            t.nome,
+            t.descricao,
+            CONCAT(e.cidade, ' ', e.uf) AS local
+        FROM time t
+        JOIN endereco e ON t.id_endereco = e.id_endereco
         WHERE 
-            nome LIKE CONCAT('%', ?, '%') OR 
-            descricao LIKE CONCAT('%', ?, '%')
+            t.nome LIKE CONCAT('%', ?, '%') OR 
+            t.descricao LIKE CONCAT('%', ?, '%') OR
+            e.cidade LIKE CONCAT('%', ?, '%') OR
+            e.uf LIKE CONCAT('%', ?, '%')
     `;
 
-    const parametro = [q, q];
-
-    const resultado = await database.execute(instrucao, parametro);
-
-    return resultado;
+    const parametro = [q, q, q, q];
+    
+    return await database.execute(instrucao, parametro);
 }
+
+// async function filtrarPorCidade(cidade) {
+//     const instrucao = `
+//         SELECT * 
+//         FROM time t 
+//         JOIN endereco e ON t.id_endereco = e.id_endereco 
+//         WHERE cidade LIKE CONCAT('%', ?, '%')
+//     `;
+
+//     const parametro = [cidade];
+
+//     return await database.execute(instrucao, parametro);
+// }
+
+// async function filtrarPorUf(uf) {
+//     const instrucao = `
+//         SELECT * FROM time t 
+//         JOIN endereco e ON t.id_endereco = e.id_endereco 
+//         WHERE uf = ?
+//     `;
+
+//     const parametro = [uf];
+
+//     return await database.execute(instrucao, parametro);
+// }
 
 module.exports = {
     cadastrar,
     listar,
-    filtrarPorCidade,
-    filtrarPorUf,
     pesquisar
 }
