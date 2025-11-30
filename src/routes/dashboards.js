@@ -27,32 +27,9 @@ router.get("/tecnico/graficos/inscricoes-por-peneira", function (req, res) {
     dashboardController.obterInscricoesPorPeneira(req, res);
 })
 
-// router.get("/tecnico/graficos/demanda-por-posicao", function (req, res) {
-    
-// })
-
-// router.get("/tecnico/graficos/jogadores-por-cidade-estado", function (req, res) {
-    
-// })
-
-// router.get("/tecnico/graficos/total-jogadores-por-posicao-estado", function (req, res) {
-    
-// })
-
-// router.get("/tecnico/graficos/taxa-crescimento-inscricoes", function (req, res) {
-    
-// })
-
-
-// router.get("/tecnico/kpis/total-jogadores-inscritos-peneiras", function (req, res) {
-
-// })
-
-// router.get("/tecnico/kpis/distribuicao-inscricoes-por-posicao", function (req, res) {
-
-// })
-
-// router.get("/tecnico/kpis/posicao-maior-demanda", function (req, res) {
+router.get("/tecnico/graficos/taxa-crescimento-inscricoes", function (req, res) {
+    dashboardController.obterTaxaInscricoesPorMes(req, res);
+})
 
 // })
 

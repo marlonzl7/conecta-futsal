@@ -97,6 +97,26 @@ async function obterInscricoesPorPeneira(idTecnico) {
     return await database.execute(instrucao, parametro);
 }
 
+async function obterTaxaInscricoesPorMes(idTecnico) {
+    const instrucao = `
+        SELECT
+            COUNT(*) AS inscricoes,
+            MONTH(p.data_inicio_inscricao) AS mes
+        FROM inscricao i
+        JOIN peneira p ON p.id_peneira = i.id_peneira
+        JOIN time ti ON ti.id_time = p.id_time
+        JOIN tecnico te ON te.id_tecnico = ti.id_tecnico
+        JOIN usuario u ON te.id_usuario = u.id_usuario
+        WHERE te.id_tecnico = 2
+        GROUP BY MONTH(p.data_inicio_inscricao)
+        ORDER BY MONTH(p.data_inicio_inscricao)
+    `;
+
+    const parametro = [idTecnico];
+
+    return await database.execute(instrucao, parametro);
+}
+
 async function obterQuantidadePeneirasInscritas(idJogador) {
     const instrucao = `
         SELECT COUNT(*) AS inscricoes FROM inscricao WHERE id_jogador = ?
@@ -112,5 +132,10 @@ module.exports = {
     listarPeneirasAbertasNoEstadoComIdUsuario,
     listarQuantidadePeneirasAbertasNaCidadeComIdUsuario,
     listarQuantidadeTimesNaCidadeComIdUsuario,
-    obterQuantidadePeneirasInscritas
+    obterInscricoesPorPeneira,
+    obterPeneiraComMaisInscricoesPorCidade,
+    obterTaxaInscricoesPorMes,
+    obterQuantidadePeneirasInscritas,
+    obterTotalInscricoesPorTecnico,
+    obterPosicaoComMaiorDemanda
 }

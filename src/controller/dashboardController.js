@@ -63,9 +63,22 @@ async function obterQuantidadePeneirasInscritas(req, res) {
 
     return res.status(200).json({ resultado });
 }
+
+async function obterTaxaInscricoesPorMes(req, res) {
+    try {
+        const { idTecnico } = req.query;
+                
+        const resultado = await dashboardModel.obterTaxaInscricoesPorMes(idTecnico);
+
+        return res.status(200).json({ resultado });
+    } catch (erro) {
+        return res.status(500).json({ error: "Erro interno no servidor. " });
+    }
+} 
+
 module.exports = {
     listarPeneirasAbertasNoEstadoComIdUsuario,
     listarQuantidadePeneirasAbertasNaCidadeComIdUsuario,
     listarQuantidadeTimesNaCidadeComIdUsuario,
-    obterInscricoesPorPeneira
+    obterTaxaInscricoesPorMes
 }
