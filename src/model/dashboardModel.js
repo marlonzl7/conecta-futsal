@@ -13,6 +13,7 @@ async function listarPeneirasAbertasNoEstadoComIdUsuario(idUsuario) {
 
     const instrucao = `
         SELECT
+            e.uf,
             e.cidade,
             COUNT(p.id_peneira) AS quantidade
         FROM peneira p
@@ -117,6 +118,26 @@ async function obterTaxaInscricoesPorMes(idTecnico) {
     return await database.execute(instrucao, parametro);
 }
 
+async function obterPeneiraComMaisInscricoesPorCidade(idTecnico) {
+    const instrucao = `
+        SELECT
+            e.cidade AS cidade,
+            COUNT(*) AS total_inscricoes
+        FROM inscricao i
+        JOIN peneira p ON i.id_peneira = p.id_peneira
+        JOIN time ti ON p.id_time = ti.id_time
+        JOIN endereco e ON p.id_endereco = e.id_endereco
+        WHERE ti.id_tecnico = 2
+        GROUP BY e.cidade
+        ORDER BY total_inscricoes DESC
+        LIMIT 1;
+    `;
+
+    const parametro = [idTecnico];
+
+    return await database.execute(instrucao, parametro);
+}
+
 async function obterQuantidadePeneirasInscritas(idJogador) {
     const instrucao = `
         SELECT COUNT(*) AS inscricoes FROM inscricao WHERE id_jogador = ?
@@ -126,7 +147,64 @@ async function obterQuantidadePeneirasInscritas(idJogador) {
 
     return await database.execute(instrucao, parametro);
 }
-       
+
+async function obterTotalInscricoesPorTecnico(idTecnico) {
+    const instrucao = `
+        SELECT
+            COUNT(*) AS totalInscricoes
+        FROM inscricao i
+        JOIN peneira p ON i.id_peneira = p.id_peneira
+        JOIN time ti ON p.id_time = ti.id_time
+        JOIN tecnico te ON ti.id_tecnico = te.id_tecnico
+        WHERE te.id_tecnico = ?;
+    `;
+
+    const parametro = [idTecnico];
+
+    return await database.execute(instrucao, parametro);
+}
+
+async function obterTotalInscricoesPorPosicao(idTecnico) {
+    const instrucao = `
+        SELECT
+            j.posicao,
+            COUNT(j.posicao) AS qtd_posicao
+        FROM inscricao i
+        JOIN jogador j ON i.id_jogador = j.id_jogador
+        JOIN peneira p ON i.id_peneira = p.id_peneira
+        JOIN time ti ON p.id_time = ti.id_time
+        JOIN tecnico te ON ti.id_tecnico = te.id_tecnico
+        WHERE te.id_tecnico = ?
+        GROUP BY
+            j.posicao;
+    `;
+
+    const parametro = [idTecnico];
+
+    return await database.execute(instrucao, parametro);
+}
+
+async function obterPosicaoComMaiorDemanda(idTecnico) {
+    const totalInscricoesPorPosicao = await obterTotalInscricoesPorPosicao(idTecnico);
+    const totalInscricoes = await obterTotalInscricoesPorTecnico(idTecnico);
+
+    const total = (totalInscricoes[0] != null) ? totalInscricoes[0].totalInscricoes : 0;
+
+    let posicao = null;
+    let maiorQuantidade = 0;
+
+    for (let i = 0; i < totalInscricoesPorPosicao.length; i++) {
+        if (totalInscricoesPorPosicao[i].qtd_posicao > maiorQuantidade) {
+            maiorQuantidade = totalInscricoesPorPosicao[i].qtd_posicao;
+            posicao = totalInscricoesPorPosicao[i].posicao;
+        }
+    }
+    
+    return {
+        posicao,
+        demanda: (total > 0) ? (maiorQuantidade * 100) / total : 0
+    };
+}
 
 module.exports = {
     listarPeneirasAbertasNoEstadoComIdUsuario,

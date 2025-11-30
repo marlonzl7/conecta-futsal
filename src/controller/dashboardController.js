@@ -74,11 +74,44 @@ async function obterTaxaInscricoesPorMes(req, res) {
     } catch (erro) {
         return res.status(500).json({ error: "Erro interno no servidor. " });
     }
-} 
+}
+
+async function obterPeneiraComMaisInscricoesPorCidade(req, res) {
+    try {
+        const { idTecnico } = req.query;
+
+        const resultado = await dashboardModel.obterPeneiraComMaisInscricoesPorCidade(idTecnico);
+
+        return res.status(200).json({ resultado });
+    } catch (erro) {
+        return res.status(500).json({ error: "Erro interno no servidor. "});
+    }
+}
+
+async function obterTotalInscricoesPorTecnico(req, res) {
+    const { idTecnico } = req.query;
+
+    const resultado = await dashboardModel.obterTotalInscricoesPorTecnico(idTecnico);
+
+    return res.status(200).json({ resultado });
+}
+
+async function obterPosicaoComMaiorDemanda(req, res) {
+    const { idTecnico } = req.query;
+
+    const resultado = await dashboardModel.obterPosicaoComMaiorDemanda(idTecnico);
+
+    return res.status(200).json({ resultado });
+}
 
 module.exports = {
     listarPeneirasAbertasNoEstadoComIdUsuario,
     listarQuantidadePeneirasAbertasNaCidadeComIdUsuario,
     listarQuantidadeTimesNaCidadeComIdUsuario,
-    obterTaxaInscricoesPorMes
+    obterInscricoesPorPeneira,
+    obterPeneiraComMaisInscricoesPorCidade,
+    obterTaxaInscricoesPorMes,
+    obterQuantidadePeneirasInscritas,
+    obterTotalInscricoesPorTecnico,
+    obterPosicaoComMaiorDemanda
 }

@@ -31,10 +31,16 @@ router.get("/tecnico/graficos/taxa-crescimento-inscricoes", function (req, res) 
     dashboardController.obterTaxaInscricoesPorMes(req, res);
 })
 
-// })
+router.get("/tecnico/kpis/posicao-com-maior-demanda", function (req, res) {
+    dashboardController.obterPosicaoComMaiorDemanda(req, res);
+})
 
-// router.get("/tecnico/kpis/cidades-com-mais-candidatos", function (req, res) {
+router.get("/tecnico/kpis/total-jogadores-inscritos-peneiras", function(req, res) {
+    dashboardController.obterTotalInscricoesPorTecnico(req, res);
+});
 
-// })
+router.get("/tecnico/kpis/cidades-com-mais-candidatos", function (req, res) {
+    dashboardController.obterPeneiraComMaisInscricoesPorCidade(req, res);
+})
 
 module.exports = router;
