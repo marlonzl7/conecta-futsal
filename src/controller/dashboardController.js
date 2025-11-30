@@ -51,13 +51,18 @@ async function listarQuantidadeTimesNaCidadeComIdUsuario(req, res) {
 async function obterInscricoesPorPeneira(req, res) {
     const { idTecnico } = req.query;
     
-    console.log(req.query);
-
     const resultado = await dashboardModel.obterInscricoesPorPeneira(idTecnico);
 
     return res.status(200).json({ resultado });
 }
 
+async function obterQuantidadePeneirasInscritas(req, res) {
+    const { idJogador } = req.query;
+
+    const resultado = await dashboardModel.obterQuantidadePeneirasInscritas(idJogador);
+
+    return res.status(200).json({ resultado });
+}
 module.exports = {
     listarPeneirasAbertasNoEstadoComIdUsuario,
     listarQuantidadePeneirasAbertasNaCidadeComIdUsuario,

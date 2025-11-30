@@ -19,6 +19,9 @@ router.get("/jogador/kpis/times-cidade", function (req, res) {
     dashboardController.listarQuantidadeTimesNaCidadeComIdUsuario(req, res);
 })
 
+router.get("/jogador/kpis/quantidade-peneiras-inscritas", function(req, res) {
+    dashboardController.obterQuantidadePeneirasInscritas(req, res);
+})
 
 router.get("/tecnico/graficos/inscricoes-por-peneira", function (req, res) {
     dashboardController.obterInscricoesPorPeneira(req, res);

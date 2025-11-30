@@ -97,9 +97,20 @@ async function obterInscricoesPorPeneira(idTecnico) {
     return await database.execute(instrucao, parametro);
 }
 
+async function obterQuantidadePeneirasInscritas(idJogador) {
+    const instrucao = `
+        SELECT COUNT(*) AS inscricoes FROM inscricao WHERE id_jogador = ?
+    `;
+
+    const parametro = [idJogador];
+
+    return await database.execute(instrucao, parametro);
+}
+       
+
 module.exports = {
     listarPeneirasAbertasNoEstadoComIdUsuario,
     listarQuantidadePeneirasAbertasNaCidadeComIdUsuario,
     listarQuantidadeTimesNaCidadeComIdUsuario,
-    obterInscricoesPorPeneira
+    obterQuantidadePeneirasInscritas
 }
