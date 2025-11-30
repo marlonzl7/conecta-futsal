@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta Futsal - Dashboard</title>
+
+    <link rel="stylesheet" href="../style/index-dashboard.css">
+    <script src="../js/sessao.js"></script>
+    <script src="../js/dashboardTecnico.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body onload="validarSessao(), carregarGraficos(), carregarKPIs()">
+    <main>
+        <header class="cabecalho">
+            <a class="logo" href="../../index.html">
+                <img src="../../assets/images/logo.svg" alt="Logo Conecta Futsal">
+            </a>
+
+            <nav class="links">
+                <a href="../../index.html">Peneiras</a>
+                <a href="../../times.html">Times</a>
+                <a href="../../tecnicos.html">Tecnicos</a>
+            </nav>
+
+            <a href="" class="usuario">
+                <div class="usuario-dados">
+                    <span id="nomeUsuarioLogado"></span>
+                    <span id="emailUsuarioLogado"></span>
+                </div>
+
+                <img class="usuario-icon" src="../../assets/icons/user-icon.svg" alt="Ícone de Usuário">
+            </a>
+        </header>
+
+        <section class="principal">
+            <aside class="sidebar">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Minhas Peneiras</a></li>
+                    <li><a href="#">Perfil</a></li>
+                    <li><a href="#">Completar Cadastro</a></li>
+                    <li><a href="#">Configurações</a></li>
+                    <li><a onclick="limparSessao()">Sair</a></li>
+                </ul>
+            </aside>
+
+            <div class="conteudo">
+                <div class="kpis">
+                    <div class="card-kpi">
+                        <span class="kpi-label">Total de inscrições</span>
+                        <span class="kpi-value" id="kpi-total-inscricoes"></span>
+                    </div>
+
+                    <div class="card-kpi">
+                        <span class="kpi-label">Posição com maior demanda</span>
+                        <span class="kpi-value" id="kpi-posicao-maior-demanda"></span>
+                    </div>
+                </div>
+
+                <div class="graficos">
+                    <div class="graficos-card">
+                        <h3>Quantidade de Inscrições por Peneira</h3>
+                        <canvas id="graficoInscricoesPorPeneira"></canvas>
+                    </div>
+
+                    <div class="graficos-card">
+                        <h3>Inscrições recebidas por mês</h3>
+                        <canvas id="graficoTaxaInscricoesPorMes"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
