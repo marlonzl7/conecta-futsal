@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta Futsal - Dashboard</title>
+
+    <link rel="stylesheet" href="../style/index-dashboard.css">
+    <script src="../js/sessao.js"></script>
+    <script src="../js/dashboardJogador.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body onload="validarSessao(), carregarGraficosDashboardJogador(), carregarKPIsDashboardJogador()">
+    <main>
+        <header class="cabecalho">
+            <a class="logo" href="../../index.html">
+                <img src="../../assets/images/logo.svg" alt="Logo Conecta Futsal">
+            </a>
+
+            <nav class="links">
+                <a href="../../index.html">Peneiras</a>
+                <a href="../../times.html">Times</a>
+                <a href="../../tecnicos.html">Tecnicos</a>
+            </nav>
+
+            <a href="" class="usuario">
+                <div class="usuario-dados">
+                    <span id="nomeUsuarioLogado"></span>
+                    <span id="emailUsuarioLogado"></span>
+                </div>
+
+                <img class="usuario-icon" src="../../assets/icons/user-icon.svg" alt="Ícone de Usuário">
+            </a>
+        </header>
+
+        <section class="principal">
+            <aside class="sidebar">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Minhas Peneiras</a></li>
+                    <li><a href="#">Cadastrar endereço</a></li>
+                    <li><a onclick="limparSessao()">Sair</a></li>
+                </ul>
+            </aside>
+
+            <div class="conteudo">
+                <div class="kpis">
+                    <div class="card-kpi">
+                        <span class="kpi-label">Peneiras abertas na minha cidade</span>
+                        <span class="kpi-value" id="kpi-peneiras-na-minha-cidade"></span>
+                    </div>
+                    <div class="card-kpi">
+                        <span class="kpi-label">Times na minha cidade</span>
+                        <span class="kpi-value" id="kpi-times-na-minha-cidade"></span>
+                    </div>
+                    <div class="card-kpi">
+                        <span class="kpi-label">Peneiras que estou inscrito</span>
+                        <span class="kpi-value" id="kpi-peneiras-inscritas"></span>
+                    </div>
+                </div>
+
+                <div class="graficos">
+                    <div class="graficos-card">
+                        <h3 id="estado-peneiras-abertas">Peneiras abertas em </h3>
+                        <canvas id="graficoPeneirasPorCidadeEstado"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
