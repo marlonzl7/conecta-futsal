@@ -13,13 +13,14 @@ async function carregarPeneiras() {
             return;
         }
 
+        
         for (let i = 0; i < peneiras.length; i++) {
             div.innerHTML += `
                 <div class="item">
                     <img src="./assets/images/padrao-sem-foto.png" alt="Escudo do Time">
                     <span class="titulo"><span class="negrito">${peneiras[i].time} - ${peneiras[i].categoria_de_base}</span></span>
-                    <span class="local"><span class="negrito">Local:</span> ${peneiras[i].local}</span>
-                    <span class="data"><span class="negrito">Data:</span> ${peneiras[i].data}</span>
+                    <span class="local"><span class="negrito">Local:</span>${peneiras[i].local}</span>
+                    <span class="data"><span class="negrito">Data:</span> ${peneiras[i].dia}/${peneiras[i].mes}/${peneiras[i].ano} - ${peneiras[i].horario}</span>
                     <button class="btn btn-inscrever" onclick="redirecionarParaPeneira(${peneiras[i].id_peneira})">Inscrever-se</button>
                 </div>
             `;
@@ -42,15 +43,13 @@ async function pesquisarPeneiras(q) {
         return;
     }
 
-    console.log(peneiras);
-
     for (let i = 0; i < peneiras.length; i++) {
         div.innerHTML += `
             <div class="item">
                 <img src="./assets/images/padrao-sem-foto.png" alt="Escudo do Time">
                 <span class="titulo"><span class="negrito">${peneiras[i].time} - ${peneiras[i].categoria_de_base}</span></span>
-                <span class="local"><span class="negrito">Local:</span> ${peneiras[i].local}</span>
-                <span class="data"><span class="negrito">Data:</span> ${peneiras[i].data}</span>
+                <span class="local"><span class="negrito">Local:</span>${peneiras[i].local}</span>
+                <span class="data"><span class="negrito">Data:</span> ${peneiras[i].dia}/${peneiras[i].mes}/${peneiras[i].ano} - ${peneiras[i].horario}</span>
                 <button class="btn btn-inscrever" onclick="redirecionarParaPeneira(${peneiras[i].id_peneira})">Inscrever-se</button>
             </div>
         `;
