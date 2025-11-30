@@ -1,9 +1,15 @@
-var tecnicoModelModel = require("../model/tecnicoModel");
+var tecnicoModel = require("../model/tecnicoModel");
 
 async function listar(req, res) {
     try {
-        const resultado = await tecnicoModel.listar();
+        const { q } = req.query
 
+        if (q) {
+            const resultado = await tecnicoModel.pesquisar(q);
+            return res.status(200).json({ message: "Técnicos listados com sucesso!", resultado })
+        }
+
+        const resultado = await tecnicoModel.listar();
         return res.status(200).json({ message: "Técnicos listados com sucesso!", resultado });
     } catch (erro) {
         console.error("Erro ao listar peneiras: ", erro);

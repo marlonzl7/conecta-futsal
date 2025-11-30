@@ -3,7 +3,7 @@ var router = express.Router();
 
 var tecnicoController = require("../controller/tecnicoController");
 
-router.get("/listar", function(req, res) {
+router.get("/", function(req, res) {
     tecnicoController.listar(req, res);
 })
 
