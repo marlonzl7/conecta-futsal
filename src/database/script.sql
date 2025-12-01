@@ -48,7 +48,7 @@ CREATE TABLE time (
 	id_time INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(45) NOT NULL UNIQUE,
 	descricao VARCHAR(255),
-	id_tecnico INT NOT NULL,
+	id_tecnico INT NOT NULL UNIQUE,
 	id_endereco INT NOT NULL,
 
 	CONSTRAINT fk_time_tecnico FOREIGN KEY (id_tecnico) REFERENCES tecnico (id_tecnico),
