@@ -108,14 +108,12 @@ async function obterTaxaInscricoesPorMes(idTecnico) {
         JOIN time ti ON ti.id_time = p.id_time
         JOIN tecnico te ON te.id_tecnico = ti.id_tecnico
         JOIN usuario u ON te.id_usuario = u.id_usuario
-        WHERE te.id_tecnico = 2
+        WHERE te.id_tecnico = ?
         GROUP BY MONTH(p.data_inicio_inscricao)
         ORDER BY MONTH(p.data_inicio_inscricao)
     `;
 
-    const parametro = [idTecnico];
-
-    return await database.execute(instrucao, parametro);
+    return await database.execute(instrucao, [idTecnico]);
 }
 
 async function obterPeneiraComMaisInscricoesPorCidade(idTecnico) {
