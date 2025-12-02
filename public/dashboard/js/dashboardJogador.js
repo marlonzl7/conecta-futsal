@@ -75,16 +75,34 @@ async function buscarPeneirasInscritas() {
 
 function preencherKPIPeneirasNaCidade(valor) {
     const kpi = document.getElementById("kpi-peneiras-na-minha-cidade");
-    kpi.innerHTML = valor.length > 0 ? valor[0].quantidade : 0;
+
+    if (!valor || valor.length === 0) {
+        kpi.innerHTML = 0;
+        return;
+    }
+
+    kpi.innerHTML = valor[0].quantidade;
 }
 
 function preencherKPITimesNaCidade(valor) {
     const kpi = document.getElementById("kpi-times-na-minha-cidade");
-    kpi.innerHTML = valor.length > 0 ? valor[0].quantidade : 0;
+
+    if (!valor || valor.length === 0) {
+        kpi.innerHTML = 0;
+        return;
+    }
+
+    kpi.innerHTML = valor[0].quantidade;
 }
 
 
 function preencherKPIPeneirasInscritas(valor) {
     const kpi = document.getElementById("kpi-peneiras-inscritas");
-    kpi.innerHTML = valor.length > 0 ? valor[0].inscricoes : 0;
+
+    if (!valor || valor.length === 0) {
+        kpi.innerHTML = 0;
+        return;
+    }
+
+    kpi.innerHTML = valor[0].inscricoes;
 }
