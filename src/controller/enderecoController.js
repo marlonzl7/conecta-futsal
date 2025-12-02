@@ -3,17 +3,21 @@ const UFS = require("../utils/ufs");
 
 async function cadastrar(req, res) {
     try {
-        const { id_usuario, cep, logradouro, numero, complemento, bairro, cidade, uf } = req.body;
+        const { idUsuario, cep, logradouro, numero, complemento, bairro, cidade, uf } = req.body;
 
         const resultado = await enderecoModel.cadastrar(
-            id_usuario, cep, logradouro, numero, complemento, bairro, cidade, uf
+            idUsuario, cep, logradouro, numero, complemento, bairro, cidade, uf
         );
 
         res.status(201).json({ message: "Endereço cadastrado com sucesso!", resultado });
     } catch (erro) {
-        console.error("Erro ao cadastrar endereço: ", erro);
-
-        res.status(500).json({ error: "Erro interno no servidor."});
+        if (erro == "ENDERECO_EXISTENTE") {
+            console.error("Erro ao cadastrar endereço: ", erro);
+            return res.status(409).json({ error: "Usuário já possuí um endereço cadastrado. "});
+        } else {
+            console.error("Erro ao cadastrar endereço: ", erro);
+            return res.status(500).json({ error: "Erro interno no servidor."});
+        }  
     }
 }
 

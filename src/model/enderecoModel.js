@@ -1,32 +1,50 @@
 var database = require("../database/config");
 
-async function cadastrar(id_usuario, cep, logradouro, numero, complemento, bairro, cidade, uf) {
+async function cadastrar(idUsuario, cep, logradouro, numero, complemento, bairro, cidade, uf) {
+    const existe = await verificarCadastro(idUsuario);
+
+    if (existe) {
+        throw "ENDERECO_EXISTENTE";
+    }
+
     const instrucaoCadastrar = `
         INSERT INTO endereco (cep, logradouro, numero, complemento, bairro, cidade, uf)
             VALUES (?, ?, ?, ?, ?, ?, ?)
-        `;
+    `;
 
     const parametros = [cep, logradouro, numero, complemento, bairro, cidade, uf];
 
     const resultadoCadastro = await database.execute(instrucaoCadastrar, parametros);
 
-    if (!inserirIdEnderecoUsuario(resultadoCadastro.insertId, id_usuario)) {
+    const idEndereco = resultadoCadastro.insertId;
+
+    const vinculo = await inserirIdEnderecoUsuario(idEndereco, idUsuario);
+
+    if (vinculo.affectedRows === 0) {
         throw "ERRO_AO_VINCULAR_ENDERECO";
     }
 
     return resultadoCadastro;
 }
 
-async function inserirIdEnderecoUsuario(id_endereco, id_usuario) {
+async function verificarCadastro(idUsuario) {
+    const sql = `SELECT id_endereco FROM usuario WHERE id_usuario = ?`;
+
+    const linhas = await database.execute(sql, [idUsuario]);
+
+    if (!linhas || linhas.length === 0) {
+        return false;
+    }
+
+    return linhas[0].id_endereco !== null;
+}
+
+async function inserirIdEnderecoUsuario(idEndereco, idUsuario) {
     const instrucao = `
         UPDATE usuario SET id_endereco = ? WHERE id_usuario = ?
     `;
-    
-    const parametro = [id_endereco, id_usuario];
 
-    const resultado = await database.execute(instrucao, parametro);
-
-    return resultado;
+    return await database.execute(instrucao, [idEndereco, idUsuario]);
 }
 
 async function buscarPorIdEndereco(idEndereco) {
@@ -34,23 +52,15 @@ async function buscarPorIdEndereco(idEndereco) {
         SELECT * FROM endereco WHERE id_endereco = ?
     `;
 
-    const parametro = [idEndereco];
-
-    const resultado = await database.execute(instrucao, parametro);
-
-    return resultado;
+    return await database.execute(instrucao, [idEndereco]);
 }
 
 async function buscarPorIdUsuario(idUsuario) {
     const instrucao = `
-        SELECT e.* FROM endereco e JOIN usuario u ON e.id_endereco = u.id_endereco WHERE id_usuario = ?
+        SELECT e.* FROM endereco e JOIN usuario u ON e.id_endereco = u.id_endereco WHERE u.id_usuario = ?
     `;
 
-    const parametro = [idUsuario];
-
-    const resultado = await database.execute(instrucao, parametro);
-
-    return resultado;
+    return await database.execute(instrucao, [idUsuario]);
 }
 
 async function obterCidadePorIdUsuario(idUsuario) {
@@ -62,9 +72,7 @@ async function obterCidadePorIdUsuario(idUsuario) {
         WHERE u.id_usuario = ?
     `;
 
-    const parametro = [idUsuario];
-
-    return await database.execute(instrucao, parametro);
+    return await database.execute(instrucao, [idUsuario]);
 }
 
 module.exports = {
