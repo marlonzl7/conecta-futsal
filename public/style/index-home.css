@@ -71,11 +71,12 @@ body {
     color: #FFFFFF;
     font-size: 0.95rem;
     font-weight: 600;
-    transition: opacity 0.2s ease;
+    transition: 0.2s;
+    border-bottom: 2px solid transparent;
 }
 
 .categorias-lista li a:hover {
-    opacity: 0.75;
+    border-color: #FFF;
 }
 
 .secao-principal {
