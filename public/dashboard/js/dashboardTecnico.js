@@ -38,6 +38,8 @@ async function plotarGraficoInscricoesPorPeneira(inscricoes) {
             datasets: [{
                 label: 'Inscrições',
                 data: valores,
+                backgroundColor: 'rgba(101, 161, 240, 1)',
+                borderColor: 'rgba(50, 128, 229, 1)',
                 borderWidth: 1
             }]
         },
@@ -70,6 +72,8 @@ async function plotarGraficoTaxaInscricoesPorMes(inscricoes) {
             datasets: [{
                 label: 'Inscrições',
                 data: valores,
+                backgroundColor: 'rgba(101, 161, 240, 1)',
+                borderColor: 'rgba(50, 128, 229, 1)',
                 borderWidth: 1
             }]
         },
