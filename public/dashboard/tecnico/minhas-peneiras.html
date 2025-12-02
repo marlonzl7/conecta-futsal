@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasboard - Minhas Peneiras</title>
+    
+    <link rel="stylesheet" href="../../dashboard/style/index-dashboard.css">
+    <link rel="stylesheet" href="../../style/buttons.css">
+
+    <script src="../js/sessao.js"></script>
+    <script src="../js/minhasPeneiras.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body onload="carregarPeneiras(), validarSessao()">
+    <main>
+        <header class="cabecalho">
+            <a class="logo" href="../../index.html">
+                <img src="../../assets/images/logo.svg" alt="Logo Conecta Futsal">
+            </a>
+
+            <nav class="links">
+                <a href="../../index.html">Peneiras</a>
+                <a href="../../times.html">Times</a>
+                <a href="../../tecnicos.html">Tecnicos</a>
+            </nav>
+
+            <a href="" class="usuario">
+                <div class="usuario-dados">
+                    <span id="nomeUsuarioLogado"></span>
+                    <span id="emailUsuarioLogado"></span>
+                </div>
+
+                <img class="usuario-icon" src="../../assets/icons/user-icon.svg" alt="Ícone de Usuário">
+            </a>
+        </header>
+
+        <section class="principal">
+            <aside class="sidebar">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="./index.html">Dashboard</a></li>
+                    <li><a href="../cadastro-endereco.html">Cadastrar Endereço</a></li>
+                    <li><a href="../cadastro-time.html">Cadastrar Time</a></li>
+                    <li><a href="../cadastro-peneira.html">Cadastrar Peneira</a></li>
+                    <li><a href="../cadastro-time.html">Meu Time</a></li>
+                    <li><a href="./minhas-peneiras.html">Minhas Peneiras</a></li>
+                    <li><a onclick="limparSessao()">Sair</a></li>
+                </ul>
+            </aside>
+
+            <div class="secaoPrincipal" id="secao-principal">
+                
+            </div>
+        </section>
+    </main>
+</body>
+</html>
