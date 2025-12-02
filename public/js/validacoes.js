@@ -195,11 +195,14 @@ function validarCep(input) {
         }
     }
 
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
     return true;
 }
 
 function validarLogradouro(input) {
-    const erroSpan = document.getElementById("sobrenomeInvalido");
+    const erroSpan = document.getElementById("logradouroInvalido");
     const divErro = erroSpan.parentElement;
 
     for (let i = 0; i < input.length; i++) {
@@ -233,6 +236,9 @@ function validarNumero(input) {
         }
     }
 
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
     return true;
 }
 
@@ -243,7 +249,7 @@ function validarComplemento(input) {
     for (let i = 0; i < input.length; i++) {
         const codigo_ascii = input.charCodeAt(i);
 
-        if (!((codigo_ascii >= 48 && codigo_ascii <= 57) || (codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii == 32))) {
+        if (!((codigo_ascii >= 48 && codigo_ascii <= 57) || (codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii === 32))) {
             erroSpan.textContent = "O complemento só pode conter números ou letras";
             divErro.classList.add("active");
             return false;
@@ -313,4 +319,100 @@ async function validarUf(input) {
     divErro.classList.add("active");
 
     return false;
+}
+
+function validarNomeTime(input) {
+    const erroSpan = document.getElementById("nomeTimeInvalido");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!((codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii >= 48 && codigo_ascii <= 57) || (codigo_ascii === 32))) {
+            erroSpan.textContent = "O nome só deve conter letras ou números";
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
+    return true;
+}
+
+function validarDescricaoTime(input) {
+    const erroSpan = document.getElementById("descricaoTimeInvalida");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!((codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii >= 48 && codigo_ascii <= 57) || (codigo_ascii === 32))) {
+            erroSpan.textContent = "A descrição só deve conter letras ou números";
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
+    return true;
+}
+
+async function validarTitulo(input) {
+    const erroSpan = document.getElementById("tituloInvalido");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!((codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii >= 48 && codigo_ascii <= 57) || (codigo_ascii === 32) || (codigo_ascii === 32) || (codigo_ascii === 45))) {
+            erroSpan.textContent = "O título só deve conter letras ou números";
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
+    return true;
+}
+
+async function validarDescricaoPeneira(input) {
+    const erroSpan = document.getElementById("descricaoPeneiraInvalida");
+    const divErro = erroSpan.parentElement;
+
+    for (let i = 0; i < input.length; i++) {
+        const codigo_ascii = input.charCodeAt(i);
+
+        if (!((codigo_ascii >= 65 && codigo_ascii <= 90) || (codigo_ascii >= 97 && codigo_ascii <= 122) || (codigo_ascii >= 48 && codigo_ascii <= 57) || (codigo_ascii == 32))) {
+            erroSpan.textContent = "A descrição só deve conter letras ou números";
+            divErro.classList.add("active");
+            return false;
+        }
+    }
+
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
+    return true;
+}
+
+async function validarHorario(input) {
+    const erroSpan = document.getElementById("horarioPeneiraInvalido");
+    const divErro = erroSpan.parentElement;
+
+    if (Number(input) < 0 || Number(input) >= 24) {
+        erroSpan.textContent = "O horário só pode estar entre 0 e 23 horas";
+        divErro.classList.add("active");
+        return false;
+    }
+
+    divErro.classList.remove("active");
+    erroSpan.textContent = "";
+
+    return true;
 }
