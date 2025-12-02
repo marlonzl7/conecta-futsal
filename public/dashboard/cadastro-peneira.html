@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/forms.css">
+    <link rel="stylesheet" href="../style/buttons.css">
+    <script src="../js/redirecionamentos.js"></script>
+    <script src="../js/validacoes.js"></script>
+    <script src="./js/cadastrarPeneira.js"></script>
+    <script src="./js/validarSessao.js"></script>
+    <script src="./js/listarCategoriasBase.js"></script>
+    <title>Conecta Futsal - Cadastrar Peneira</title>
+</head>
+<body onload="listarCategoriasBase()">
+    <main class="main">
+        <header class="header">
+            <h2>Cadastro</h2>   
+            <p>Insira as informações necessárias para cadastrar sua peneira</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" name="titulo" id="titulo" placeholder="titulo" oninput="validarTitulo(titulo.value)">
+                    <div class="error"><span id="tituloInvalido"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="descricaoPeneira" id="descricaoPeneira" placeholder="descricao" oninput="validarDescricaoPeneira(descricaoPeneira.value)">
+                    <div class="error"><span id="descricaoPeneiraInvalida"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="date" name="dataLimiteInscricao" id="dataLimiteInscricao" placeholder="data limite de inscrição (opcional)">
+                    <div class="error"><span id="dataLimiteInscricaoInvalida"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="date" name="dataRealizacao" id="dataRealizacao" placeholder="data da realização">
+                    <div class="error"><span id="dataRealizacaoInvalida"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="hour" name="horarioPeneira" id="horarioPeneira" placeholder="horário" oninput="validarHorario(horarioPeneira.value)">
+                    <div class="error"><span id="horarioPeneiraInvalido"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <select name="categoriaBase" id="categoriaBase" placeholder="Quem é você?">
+                        <option value="#">Selecione...</option>
+                    </select>
+                    <div class="error"><span id="categoriaBaseInvalida"></span></div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button onclick="cadastrar(titulo.value, descricaoPeneira.value, horarioPeneira.value, categoriaBase.value)" class="btn btn-principal" id="btn-cadastrar">Cadastrar</button>
+                <button onclick="voltar()" class="btn btn-complementar" id="btn-voltar">Voltar</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
