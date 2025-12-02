@@ -17,7 +17,7 @@ async function cadastrar(cep, logradouro, numero, complemento, bairro, cidade, u
     console.log("ID USUÁRIO NO FRONT:", sessionStorage.ID_USUARIO);
 
     const dados = {
-        idTecnico: sessionStorage.ID_TECNICO,
+        idUsuario: sessionStorage.ID_USUARIO,
         nome: sessionStorage.NOME_TIME,
         descricao: sessionStorage.DESCRICAO_TIME,
         cep: document.getElementById("cep").value,
@@ -29,7 +29,7 @@ async function cadastrar(cep, logradouro, numero, complemento, bairro, cidade, u
         uf: document.getElementById("uf").value,
     };
 
-    fetch("/times/cadastrar", {
+    fetch("/enderecos/cadastrar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
