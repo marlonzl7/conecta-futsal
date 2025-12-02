@@ -3,11 +3,20 @@ var database = require("../database/config");
 async function listar() {
     const instrucao = `SELECT * FROM categoria_base`;
 
-    const resultado = await database.execute(instrucao);
+    return await database.execute(instrucao);
+}
 
-    return resultado;
+async function obterIdCategoriaBasePorNome(nome) {
+    const instrucao = `
+        SELECT id_categoria_base 
+        FROM categoria_base 
+        WHERE nome = ?
+    `;
+
+    return await database.execute(instrucao, [nome]);
 }
 
 module.exports = {
-    listar
+    listar,
+    obterIdCategoriaBasePorNome
 }
