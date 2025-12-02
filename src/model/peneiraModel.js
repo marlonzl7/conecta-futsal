@@ -47,15 +47,8 @@ async function listarQuantidadePorUf() {
 
 async function buscarPorIdPeneira(id) {
     const instrucao = `
-        SELECT *, c.nome
-        FROM peneira p
-        JOIN time t
-            ON p.id_time = t.id_time
-        JOIN endereco e
-            ON p.id_endereco = e.id_endereco
-        JOIN categoria_base c
-            ON p.id_categoria_base = c.id_categoria_base
-        WHERE p.id_peneira = ?
+        SELECT * FROM vw_peneiras_detalhadas
+        WHERE id_peneira = ?
     `;
 
     return await database.execute(instrucao, [id]);
