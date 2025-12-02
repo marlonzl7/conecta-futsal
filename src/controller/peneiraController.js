@@ -21,7 +21,7 @@ async function cadastrar(req, res) {
 
 async function listar(req, res) {
     try {
-        const { q, idTecnico } = req.query;
+        const { q, idTecnico, idJogador } = req.query;
         
         if (q) {
             const resultado = await peneiraModel.pesquisar(q);
@@ -30,6 +30,11 @@ async function listar(req, res) {
 
         if (idTecnico) {
             const resultado = await peneiraModel.buscarPorIdTecnico(idTecnico);
+            return res.status(200).json({ resultado });
+        }
+
+        if (idJogador) {
+            const resultado = await peneiraModel.buscarPeneirasInscritasComIdJogador(idJogador);
             return res.status(200).json({ resultado });
         }
 

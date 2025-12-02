@@ -138,6 +138,30 @@ async function buscarPorIdTecnico(idTecnico) {
     return await database.execute(instrucao, [idTecnico])
 }
 
+async function buscarPeneirasInscritasComIdJogador(idJogador) {
+    const instrucao = `
+        SELECT
+            p.id_peneira,
+            p.titulo,
+            p.descricao,
+            t.nome AS time,
+            c.nome AS categoria_de_base,
+            CONCAT(e.logradouro, ', ', e.numero,  ' - ', e.cidade, ' ', e.uf) AS local,
+            YEAR(p.data_hora_realizacao) AS ano,
+            MONTH(p.data_hora_realizacao) AS mes,
+            DAY(p.data_hora_realizacao) AS dia,
+            TIME(p.data_hora_realizacao) AS horario
+        FROM inscricao i
+        JOIN peneira p ON i.id_peneira = p.id_peneira
+        JOIN time t ON p.id_time = t.id_time
+        JOIN categoria_base c ON p.id_categoria_base = c.id_categoria_base
+        JOIN endereco e ON p.id_endereco = e.id_endereco
+        WHERE i.id_jogador = ?
+    `;
+
+    return await database.execute(instrucao, [idJogador])
+}
+
 module.exports = {
     cadastrar,
     listar,
@@ -147,5 +171,6 @@ module.exports = {
     filtrarPeneirasAbertasPorCidade,
     filtrarPeneirasAbertasPorUf,
     pesquisar,
-    buscarPorIdTecnico
+    buscarPorIdTecnico,
+    buscarPeneirasInscritasComIdJogador
 }
