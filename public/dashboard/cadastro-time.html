@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style/forms.css">
+    <link rel="stylesheet" href="../../style/buttons.css">
+    <title>Conecta Futsal - Cadastro de time</title>
+    <script src="./../js/redirecionamentos.js"></script>
+    <script src="./../js/validacoes.js"></script>
+    <script src="./js/cadastrarTime.js"></script>
+    <script src="../js/validarSessao.js"></script>
+    <script src="./js/listarUfsValidas.js"></script>
+</head>
+<body onload="listarUfsValidas()">
+    <main class="main">
+        <header class="header">
+            <h2>Cadastro</h2>
+            <p>Insira as informações necessárias para cadastrar seu time</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-group">
+                <!-- <h4 id="label-secao">Informações</h4> -->
+                <div class="input-box">
+                    <input type="text" name="nome" id="nome" placeholder="nome" oninput="validarNomeTime(nome.value)">
+                    <div class="error"><span id="nomeTimeInvalido"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="descricao" id="descricao" placeholder="descricao" oninput="validarDescricaoTime(descricao.value)">
+                    <div class="error"><span id="descricaoTimeInvalida"></span></div>
+                </div>
+
+
+                <!-- <h4 id="label-secao">Endereço</h4> -->
+                <div class="input-box">
+                    <input type="text" name="cep" id="cep" placeholder="Cep" maxlength="8" oninput="validarCep(cep.value)">
+                    <div class="error"><span id="cepInvalido"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="logradouro" id="logradouro" placeholder="Logradouro" oninput="validarLogradouro(logradouro.value)">
+                    <div class="error"><span id="logradouroInvalido"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="numero" id="numero" placeholder="Número" oninput="validarNumero(numero.value)">
+                    <div class="error"><span id="numeroInvalido"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="complemento" id="complemento" placeholder="Complemento (opcional)" oninput="validarComplemento(complemento.value)">
+                    <div class="error"><span id="complementoInvalido"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="bairro" id="bairro" placeholder="Bairro" oninput="validarBairro(bairro.value)">
+                    <div class="error"><span id="bairroInvalido"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" name="cidade" id="cidade" placeholder="Cidade" oninput="validarCidade(cidade.value)">
+                    <div class="error"><span id="cidadeInvalida"></span></div>
+                </div>
+
+                <div class="input-box">
+                    <select name="uf" id="uf" placeholder="Quem é você?" oninput="validarUf(uf.value)">
+                        <option value="#">Selecione...</option>
+                    </select>
+                    <div class="error"><span id="ufInvalido"></span></div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <div class="cadastrar">
+                    <button onclick="cadastrar(nome.value, descricao.value, uf.value, logradouro.value, numero.value, complemento.value, cidade.value, uf.value)" class="btn btn-principal" id="btn-cadastrar">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
