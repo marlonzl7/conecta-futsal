@@ -8,22 +8,18 @@ async function carregarPeneira() {
         const dados = await resposta.json();
         const idUsuario = sessionStorage.ID_USUARIO;
 
-        let data = dados.resultado[0].data_hora_realizacao;
-        let horario = dados.resultado[0].data_hora_realizacao;
-        let endereco = dados.resultado[0].logradouro;
-        endereco += dados.resultado[0].numero;
-        endereco += dados.resultado[0].bairro;
-        endereco += dados.resultado[0].cidade;
-        endereco += dados.resultado[0].uf;
+        const ano = dados.resultado[0].ano;
+        const mes = dados.resultado[0].mes;
+        const dia = dados.resultado[0].dia;
+        const data = `${dia}/${mes}/${ano}`;
+        const horario = dados.resultado[0].horario;
 
-        document.getElementById("titulo").innerHTML = dados.resultado[0].titulo;
+        document.getElementById("titulo").innerHTML = dados.resultado[0].time;
         document.getElementById("status").innerHTML = (dados.resultado[0].status == true) ? "Aberta" : "Fechada"; 
-        document.getElementById("categoria").innerHTML = dados.resultado[0].nome;
-        // document.getElementById("data").innerHTML = data;
-        // document.getElementById("horario").innerHTML = horario;
-        // document.getElementById("endereco").innerHTML = endereco;
-        document.getElementById("data-inicio-inscricao").innerHTML = dados.resultado[0].data_inicio_inscricao;
-        document.getElementById("data-final-inscricao").innerHTML = dados.resultado[0].data_final_inscricao;
+        document.getElementById("categoria").innerHTML = dados.resultado[0].categoria_de_base;
+        document.getElementById("data-realizacao").innerHTML = data;
+        document.getElementById("horario").innerHTML = horario;
+        document.getElementById("endereco").innerHTML = dados.resultado[0].local;
         document.getElementById("button").innerHTML += `<button class="btn btn-inscrever" id="btnInscrever" onclick="inscreverUsuario(${idPeneira}, ${idUsuario})">Inscrever-se</button>`;
     } catch (erro) {
         console.error("Erro ao buscar a peneira:", erro);
