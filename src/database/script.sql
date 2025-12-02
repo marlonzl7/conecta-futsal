@@ -70,7 +70,7 @@ CREATE TABLE peneira (
 	data_hora_realizacao DATETIME NOT NULL,
 	id_time INT NOT NULL,
 	id_endereco INT NOT NULL,
-	id_categoria_base INT,
+	id_categoria_base INT NOT NULL,
 
 	CONSTRAINT fk_peneira_time FOREIGN KEY (id_time) REFERENCES time (id_time),
 	CONSTRAINT fk_peneira_endereco FOREIGN KEY (id_endereco) REFERENCES endereco (id_endereco),
