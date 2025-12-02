@@ -1,16 +1,21 @@
 var database = require("../database/config");
 
-async function cadastrar(nome, descricao, idTecnico, idEndereco) {
+async function cadastrar(nome, descricao, idTecnico, cep, logradouro, numero, complemento, bairro, cidade, uf) {
+    const instrucaoCadastrarEndereco = `
+        INSERT INTO endereco (cep, logradouro, numero, complemento, bairro, cidade, uf) VALUES
+            (?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    const resultadoCadastro = await database.execute(instrucaoCadastrarEndereco, [cep, logradouro, numero, complemento, bairro, cidade, uf]) 
+
+    const idEndereco = resultadoCadastro.insertId;
+
     const instrucao = `
         INSERT INTO time (nome, descricao, id_tecnico, id_endereco)
             VALUES (?, ?, ?, ?)
     `;
-
-    const parametros = [nome, descricao, idTecnico, idEndereco];
     
-    const resultado = database.execute(instrucao, parametros);
-
-    return resultado;
+    return await database.execute(instrucao, [nome, descricao, idTecnico, idEndereco]);
 }
 
 async function listar() {
@@ -46,6 +51,26 @@ async function pesquisar(q) {
     return await database.execute(instrucao, parametro);
 }
 
+async function obterIdTimeComIdTecnico(idTecnico) {
+    const instrucao = `
+        SELECT id_time
+        FROM time
+        WHERE id_tecnico = ?
+    `;
+
+    return await database.execute(instrucao, [idTecnico]);
+}
+
+async function obterIdEndereco(idTime) {
+    const instrucao = `
+        SELECT id_endereco
+        FROM time
+        WHERE id_time = ?
+    `;
+
+    return await database.execute(instrucao, [idTime]);
+}
+
 // async function filtrarPorCidade(cidade) {
 //     const instrucao = `
 //         SELECT * 
@@ -74,5 +99,7 @@ async function pesquisar(q) {
 module.exports = {
     cadastrar,
     listar,
-    pesquisar
+    pesquisar,
+    obterIdTimeComIdTecnico,
+    obterIdEndereco
 }
