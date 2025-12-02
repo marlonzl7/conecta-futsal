@@ -3,27 +3,33 @@ var peneiraModel = require("../model/peneiraModel");
 async function cadastrar(req, res) {
     try {
         const { 
-            titulo, descricao, dataInicioInscricao, dataFinalInscricao, dataHoraRealizacao, idTime, idEndereco, idCategoriaBase 
+            titulo, descricao, dataFinalInscricao, dataHoraRealizacao, idTecnico, idUsuario, idCategoriaBase 
         } = req.body;
 
+        console.log(req.body);
+
         const resultado = await peneiraModel.cadastrar(
-            titulo, descricao, dataInicioInscricao, dataFinalInscricao, dataHoraRealizacao, idTime, idEndereco, idCategoriaBase
+            titulo, descricao, dataFinalInscricao, dataHoraRealizacao, idTecnico, idUsuario, idCategoriaBase
         );
 
         res.status(201).json({ message: "Peneira cadastrada com sucesso!", resultado });
     } catch (erro) {
         console.error("Erro ao cadastrar peneira: ", erro);
-
-        res.status(500).json({ error: "Erro interno no servidor." });
+        return res.status(500).json({ error: "Erro interno no servidor." });
     }
 }
 
 async function listar(req, res) {
     try {
-        const { q } = req.query;
+        const { q, idTecnico } = req.query;
         
         if (q) {
             const resultado = await peneiraModel.pesquisar(q);
+            return res.status(200).json({ resultado });
+        }
+
+        if (idTecnico) {
+            const resultado = await peneiraModel.buscarPorIdTecnico(idTecnico);
             return res.status(200).json({ resultado });
         }
 
@@ -87,7 +93,7 @@ async function filtrar(req, res) {
     } catch (erro) {
         console.error("Erro ao listar peneiras: ", erro);
 
-        res.status(500).json({ error: "Erro interno no servidor. "});
+        return res.status(500).json({ error: "Erro interno no servidor. "});
     }
 }
 
@@ -101,7 +107,7 @@ async function buscarPorId(req, res) {
     } catch (erro) {
         console.error("Erro ao listar peneira: ", erro);
 
-        res.status(500).json({ error: "Erro interno no servidor. "});
+        return res.status(500).json({ error: "Erro interno no servidor. "});
     }       
 }
 
@@ -115,7 +121,7 @@ async function obterQuantidadePeneirasPorCidadePorIdUsuario(req, res) {
     } catch (erro) {
         console.error("Erro ao buscar peneiras na cidade do usuário: ", erro);
 
-        res.status(500).json({ error: "Erro interno no servidor." });
+        return res.status(500).json({ error: "Erro interno no servidor." });
     }
 }
 
